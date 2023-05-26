@@ -1,0 +1,4 @@
+{
+  "ext": ".ts,.env",
+  "exec": "ts-node ./src/index"
+}

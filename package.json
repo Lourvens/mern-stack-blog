@@ -1,0 +1,16 @@
+{
+  "name": "mern-stack-blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Lourvens/mern-stack-blog.git",
+  "author": "Luxamar Lourvens <63268101+Lourvens@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "concurrently \"yarn run server\" \"yarn run client\"",
+    "server": "yarn --cwd server run dev",
+    "client": "yarn --cwd client run dev"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.1"
+  }
+}
