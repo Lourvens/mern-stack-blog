@@ -8,14 +8,14 @@ import type { authTokenPayload } from "../../../../types";
 
 const refreshToken: RequestHandler = (req, res) => {
   let token = req.cookies[env.TOKEN_COOKIE_NAME];
-
+  console.log(token, req.cookies);
   try {
-    let { email, fullname, profile_picture } = jwt.verify(
+    let { email, fullname, profile_picture, id } = jwt.verify(
       token,
       env.SECRET_TOKEN_KEY
     ) as authTokenPayload;
 
-    let payload = { email, fullname, profile_picture };
+    let payload = { email, fullname, profile_picture, id };
     let access_token = generateAccessToken(payload);
 
     res.status(200).json({ access_token });

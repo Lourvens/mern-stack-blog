@@ -1,15 +1,4 @@
-import { RequestHandler } from "express";
-
-type UploadReqHandler = RequestHandler<
-  { user_id: string },
-  unknown,
-  unknown,
-  unknown
->;
-
-const uploadProfileImg: UploadReqHandler = (req, res) => {
-  req.params.user_id;
-};
+import uploadProfileImg from "./uploadProfileImg";
 
 const userCtrl = {
   uploadProfileImg,

@@ -10,6 +10,6 @@ export const generateAccessToken = (payload: authTokenPayload) => {
 
 export const generatePrivateToken = (payload: authTokenPayload) => {
   return jwt.sign(payload, env.SECRET_TOKEN_KEY, {
-    expiresIn: "15m",
+    expiresIn: "14d",
   });
 };

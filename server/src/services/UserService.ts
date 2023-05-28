@@ -26,3 +26,9 @@ export async function getUserByEmail(email: string) {
 export async function updateProfilePicture(userId: string, value: string) {
   await User.findByIdAndUpdate(userId, { profile_picture: value });
 }
+
+export default {
+  updateProfilePicture,
+  getUserByEmail,
+  createUser,
+};
