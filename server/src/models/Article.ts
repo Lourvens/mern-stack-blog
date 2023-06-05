@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, InferSchemaType } from "mongoose";
 
 const ArticleSchema = new Schema(
   {
@@ -19,13 +19,27 @@ const ArticleSchema = new Schema(
       ref: "User",
       required: true,
     },
-    comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
+    comments: [
+      {
+        creator: {
+          type: Schema.Types.ObjectId,
+          ref: "User",
+          required: true,
+        },
+        content: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
   },
   {
     timestamps: true,
   }
 );
 
-const Article = model("Article", ArticleSchema);
+const Article = model<articleProp>("Article", ArticleSchema);
+
+export type articleProp = InferSchemaType<typeof ArticleSchema>;
 
 export default Article;

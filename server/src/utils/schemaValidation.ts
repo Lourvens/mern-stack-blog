@@ -20,3 +20,10 @@ export const userRegister = userLogin
     fullname: z.string().min(3),
   })
   .required();
+
+export const articleSchema = z
+  .object({
+    title: z.string().min(3),
+    content: z.string().min(255),
+  })
+  .required();

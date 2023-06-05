@@ -27,8 +27,14 @@ export async function updateProfilePicture(userId: string, value: string) {
   await User.findByIdAndUpdate(userId, { profile_picture: value });
 }
 
+export async function getUserInfo(id: string) {
+  let user = await User.findById(id).select("-__v -password").lean().exec();
+  return user;
+}
+
 export default {
   updateProfilePicture,
   getUserByEmail,
   createUser,
+  getUserInfo,
 };
