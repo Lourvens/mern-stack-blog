@@ -11,8 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
+#ignore uploaded file
+src/uploads/*
 # ignore env var
-
 .env
 .env.developemnt
 .env.production

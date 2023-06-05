@@ -1,3 +1,4 @@
+import path from "path";
 import connectDb from "./config/connectDb";
 import app from "./app";
 import loadEnv from "./config/loadEnv";
@@ -8,5 +9,6 @@ loadEnv();
 connectDb();
 
 app.listen(env.PORT, env.HOST, () => {
+  console.clear();
   console.log(clc.cyan(`server running at ${env.HOST}:${env.PORT}`));
 });
