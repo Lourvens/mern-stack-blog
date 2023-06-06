@@ -38,7 +38,6 @@ async function compareUserIdAndDelete(article_id: string, user_id: string) {
 
   if (<unknown>article.author._id == user_id) {
     const res = await Article.deleteOne({ _id: article_id }).exec();
-    console.log(JSON.stringify(res));
   } else {
     throw new Error("forbbiden");
   }
