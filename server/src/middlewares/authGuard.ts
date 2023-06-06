@@ -11,8 +11,8 @@ export const isAuthenticated: RequestHandler = (req, res, next) => {
     next();
   } catch (err) {
     if (err instanceof JsonWebTokenError) {
-      throw createHttpError(UNAUTHORIZED, "invalid token");
+      throw createHttpError(UNAUTHORIZED, "token might be invalid or expired");
     }
+    next(err);
   }
 };
-

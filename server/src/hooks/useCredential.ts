@@ -3,8 +3,8 @@ import { Request } from "express";
 import { authTokenPayload } from "../../../types";
 
 /**
- * this function is use to obtain the user credentials stored in the `req.header.authorization` and return it
- * as a baerer token. make sure, `useCredentials` is called in a `protected route` by the `isAuthenticated` middleware.
+ * this function is use to obtain the user credentials stored in the `req.header.authorization`
+ * as a bearer jwt token and return decoded value. make sure, `useCredentials` is called in a `protected route` by the `isAuthenticated` middleware.
  * otherwise an Error will be thrown
  */
 

@@ -36,10 +36,11 @@ async function compareUserIdAndDelete(article_id: string, user_id: string) {
 
   if (!article) throw new ResourceNotFound();
 
-  if (JSON.stringify(article.author._id) == user_id) {
-    await Article.deleteOne({ _id: user_id });
+  if (<unknown>article.author._id == user_id) {
+    const res = await Article.deleteOne({ _id: article_id }).exec();
+    console.log(JSON.stringify(res));
   } else {
-    throw new Error("given id doesn't match");
+    throw new Error("forbbiden");
   }
 }
 
