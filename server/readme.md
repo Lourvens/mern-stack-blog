@@ -22,7 +22,7 @@ If an error occurs while processing a request, the API will return an appropriat
 
 The following table provides an overview of the available API endpoints:
 
-| Endpoint                           | Method | Description                 | authorization      |
+| Endpoint                           | Method | Description                 | access             |
 | ---------------------------------- | ------ | --------------------------- | ------------------ |
 | `/auth/signup`                     | POST   | Create a new user.          | any                |
 | `/auth/login`                      | POST   | login a user.               | any                |
