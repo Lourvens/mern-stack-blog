@@ -5,7 +5,7 @@ import useCredentials from "../../hooks/useCredential";
 import { RequestHandler } from "express";
 import { BAD_REQUEST, FORBIDDEN, NOT_FOUND } from "http-status";
 import { Error as MongoErr } from "mongoose";
-import { ResourceNotFound } from "../../utils/Error";
+import { ForbbidenResourceMutation, ResourceNotFound } from "../../utils/Error";
 
 type params = { id: string };
 const deleteOne: RequestHandler<params> = async (req, res) => {
@@ -20,7 +20,7 @@ const deleteOne: RequestHandler<params> = async (req, res) => {
       throw createHttpError(BAD_REQUEST, "invalid article id");
     if (err instanceof ResourceNotFound)
       throw createHttpError(NOT_FOUND, "not found or already deleted");
-    if (err instanceof Error && err.message == "forbbiden")
+    if (err instanceof ForbbidenResourceMutation)
       throw createHttpError(FORBIDDEN);
     else throw err;
   }

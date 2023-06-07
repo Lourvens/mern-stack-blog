@@ -1,5 +1,18 @@
 import { Schema, model, InferSchemaType } from "mongoose";
 
+const CommentSchema = new Schema({
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  content: {
+    type: String,
+    max: 1000,
+    required: true,
+  },
+});
+
 const ArticleSchema = new Schema(
   {
     title: {
@@ -19,19 +32,7 @@ const ArticleSchema = new Schema(
       ref: "User",
       required: true,
     },
-    comments: [
-      {
-        creator: {
-          type: Schema.Types.ObjectId,
-          ref: "User",
-          required: true,
-        },
-        content: {
-          type: String,
-          required: true,
-        },
-      },
-    ],
+    comments: [CommentSchema],
   },
   {
     timestamps: true,

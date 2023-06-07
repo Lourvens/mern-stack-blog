@@ -1,6 +1,7 @@
+import comment from "./commentArticleService";
 import Article from "../models/Article";
 import type { articleProp } from "../models/Article";
-import { ResourceNotFound } from "../utils/Error";
+import { ForbbidenResourceMutation, ResourceNotFound } from "../utils/Error";
 
 type createArticleData = Pick<
   articleProp,
@@ -19,6 +20,7 @@ async function create(data: createArticleData) {
 async function getArticles(step?: number) {
   const articles = await filter(Article.find())
     .skip(step || 0)
+    .select("-comments")
     .limit(20)
     .sort("-1")
     .exec();
@@ -27,7 +29,9 @@ async function getArticles(step?: number) {
 }
 
 async function getOne(id: string) {
-  const article = await filter(Article.findById(id)).exec();
+  const article = await filter(Article.findById(id))
+    .populate("comments.author", "fullname profile_picture")
+    .exec();
   return article;
 }
 
@@ -37,12 +41,18 @@ async function compareUserIdAndDelete(article_id: string, user_id: string) {
   if (!article) throw new ResourceNotFound();
 
   if (<unknown>article.author._id == user_id) {
-    const res = await Article.deleteOne({ _id: article_id }).exec();
+    await Article.deleteOne({ _id: article_id }).exec();
   } else {
-    throw new Error("forbbiden");
+    throw new ForbbidenResourceMutation();
   }
 }
 
-const ArticleService = { create, getArticles, getOne, compareUserIdAndDelete };
+const ArticleService = {
+  create,
+  getArticles,
+  getOne,
+  compareUserIdAndDelete,
+  comment,
+};
 
 export default ArticleService;

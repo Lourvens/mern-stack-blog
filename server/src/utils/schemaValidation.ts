@@ -1,13 +1,5 @@
 import * as z from "zod";
 
-export const blogSchema = z
-  .object({
-    title: z.string().max(255),
-    content: z.string(),
-    tag: z.string(),
-  })
-  .required();
-
 export const userLogin = z
   .object({
     email: z.string().email(),
@@ -23,7 +15,13 @@ export const userRegister = userLogin
 
 export const articleSchema = z
   .object({
-    title: z.string().min(3),
-    content: z.string().min(255),
+    title: z.string().min(3).max(255),
+    content: z.string().min(255).max(100_000),
+  })
+  .required();
+
+export const commentSchema = z
+  .object({
+    content: z.string().max(10_000),
   })
   .required();
