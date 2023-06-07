@@ -24,7 +24,7 @@ const loadEnv = () => {
   switch (NODE_ENV) {
     case "production":
       dotenv.config({
-        path: path.join(__dirname, "..", "..", ".env.prod"),
+        path: path.join(__dirname, "..", "..", ".env"),
       });
       break;
     case "test":
