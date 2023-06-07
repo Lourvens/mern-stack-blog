@@ -17,7 +17,7 @@ const env = {
   DB_URI: process.env.DB_URI as string,
 
   ACCESS_TOKEN_KEY: process.env.ACCESS_TOKEN_KEY as string,
-  SECRET_TOKEN_KEY: process.env.SCERET_TOKEN_KEY as string,
+  SECRET_TOKEN_KEY: process.env.SECRET_TOKEN_KEY as string,
   TOKEN_COOKIE_NAME: "auth_token",
 };
 
