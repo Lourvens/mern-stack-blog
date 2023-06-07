@@ -2,6 +2,9 @@
   "name": "blog-server",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "node": "14.x"
+  },
   "license": "MIT",
   "scripts": {
     "start": "cross-env NODE_ENV=production node dist/index.js",
