@@ -11,10 +11,10 @@ const getArticles: RequestHandler = async (req, res) => {
 
 type params = { id: string };
 const getArticleByIdFn: RequestHandler<params> = async (req, res) => {
-  let id = req.params.id;
+  const id = req.params.id;
   try {
     const data = await ArticleService.getOne(id);
-    if (!data) res.status(NOT_FOUND).end();
+    if (!data) return res.status(NOT_FOUND).end();
 
     res.json(data).end();
   } catch {
