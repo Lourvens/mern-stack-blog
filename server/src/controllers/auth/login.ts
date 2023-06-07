@@ -12,7 +12,7 @@ import {
 } from "../../utils/tokenGenerator";
 import { secureCookieOption } from "../../utils/cookieOptions";
 import env from "../../config/env";
-import type { authTokenPayload } from "../../../../types";
+import type { authTokenPayload } from "../../types";
 
 const login: loginReqHandler = async (req, res) => {
   try {

@@ -4,7 +4,7 @@ import jwt, { JsonWebTokenError, TokenExpiredError } from "jsonwebtoken";
 import { UNAUTHORIZED } from "http-status";
 import createHttpError from "http-errors";
 import { generateAccessToken } from "../../utils/tokenGenerator";
-import type { authTokenPayload } from "../../../../types";
+import type { authTokenPayload } from "../../types";
 
 const refreshToken: RequestHandler = (req, res) => {
   let token = req.cookies[env.TOKEN_COOKIE_NAME];
