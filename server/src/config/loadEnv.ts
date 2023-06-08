@@ -21,23 +21,36 @@ const loadEnv = () => {
   // avoid multiple execution of this function
   if (Module.hasCalled()) return;
 
+  let envVars: any;
+
   switch (NODE_ENV) {
     case "production":
-      dotenv.config({
+      envVars = dotenv.config({
         path: path.join(__dirname, "..", "..", ".env"),
-      });
+      }).parsed;
       break;
     case "test":
-      dotenv.config({
+      envVars = dotenv.config({
         path: path.join(__dirname, "..", "..", ".env.test"),
-      });
+      }).parsed;
       break;
     default:
-      let a = dotenv.config({
+      envVars = dotenv.config({
         path: path.join(__dirname, "..", "..", ".env.dev"),
-      });
+      }).parsed;
       break;
   }
+
+  const requireEnv = (...requiredVars: string[]) => {
+    if (typeof envVars == "object") {
+      requiredVars.forEach((item) => {
+        const message = `${item} var not found work properly, provide it on the env var`;
+        if (!envVars[item]) throw new Error(message);
+      });
+    }
+  };
+
+  requireEnv("DB_URI", "ACCESS_TOKEN_KEY", "SECRET_TOKEN_KEY");
 };
 
 export default loadEnv;
