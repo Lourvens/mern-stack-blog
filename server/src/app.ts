@@ -4,6 +4,8 @@ import morgan from "morgan";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import path from "path";
+import helmet from "helmet";
+import compression from "compression";
 
 import errorHandler from "./middlewares/errorHandler";
 import { apiLimiter } from "./middlewares/rateLimit";
@@ -17,6 +19,17 @@ if (env.mode.DEV) {
   app.use(morgan("dev"));
 }
 
+if (env.mode.PROD) {
+  app.use(helmet());
+  app.use(
+    compression({
+      filter: (req, res) => {
+        if (req.headers["x-no-compression"]) return false;
+        return compression.filter(req, res);
+      },
+    })
+  );
+}
 // default config
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
