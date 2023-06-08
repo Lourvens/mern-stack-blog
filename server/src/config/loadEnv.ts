@@ -44,7 +44,7 @@ const loadEnv = () => {
   const requireEnv = (...requiredVars: string[]) => {
     if (typeof envVars == "object") {
       requiredVars.forEach((item) => {
-        const message = `${item} var not found work properly, provide it on the env var`;
+        const message = `${item} variable not found, server won't work properly, provide it on the env file`;
         if (!envVars[item]) throw new Error(message);
       });
     }
