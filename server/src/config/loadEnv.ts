@@ -18,7 +18,7 @@ class Module {
 }
 
 const loadEnv = () => {
-  // avoid multiple execution
+  // avoid multiple execution of this function
   if (Module.hasCalled()) return;
 
   switch (NODE_ENV) {

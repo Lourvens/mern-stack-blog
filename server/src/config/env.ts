@@ -12,7 +12,6 @@ const env = {
     TEST: NODE_ENV === "test",
   },
 
-  HOST: (process.env.HOST || "localhost") as string,
   PORT: (process.env.PORT || 3000) as number,
   DB_URI: process.env.DB_URI as string,
 

@@ -1,4 +1,3 @@
-import path from "path";
 import connectDb from "./config/connectDb";
 import app from "./app";
 import loadEnv from "./config/loadEnv";
@@ -8,7 +7,7 @@ import clc from "cli-color";
 loadEnv();
 connectDb();
 
-app.listen(env.PORT, env.HOST, () => {
+app.listen(env.PORT, () => {
   console.clear();
-  console.log(clc.cyan(`server running at ${env.HOST}:${env.PORT}`));
+  console.log(clc.cyan(`server running on port ${env.PORT}`));
 });
