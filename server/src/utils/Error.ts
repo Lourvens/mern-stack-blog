@@ -1,6 +1,18 @@
 /**
- * these Error classes are implemented to handle error that might be thrown in a
- * more effective way when we are retrieve and mutate resources from the database
+ * these Error classes are implemented to handle error in our express route controllers
+ * in a more concise way. these Errors might be thrown when we retrieve or/and mutate
+ * resources from the database.
+ * @example
+ * app.get("/article/:id", async (req, res) => {
+ *  const article_id = req.params.id
+ *  try {
+ *    let article = await ArticleService.getOne(article_id)
+ *    res.json(article)
+ *  } catch (err) {
+ *    if(err instanceof ResourceNotFound) {
+ *      return res.status(404).json({message: err.message})
+ *    }
+ *    ...
  */
 
 /**
