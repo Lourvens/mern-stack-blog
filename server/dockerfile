@@ -1,0 +1,14 @@
+FROM node:lts-alpine
+
+WORKDIR /usr/blog-app-api
+
+COPY package*.json ./
+COPY yarn* ./
+RUN yarn install --frozen-lockfile
+ENV NODE_ENV=production
+COPY . .
+RUN yarn run build
+EXPOSE 3000
+
+
+CMD [ "node", "./dist/index.js" ]
