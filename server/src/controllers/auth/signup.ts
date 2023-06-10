@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import { RequestHandler } from "express";
 import { user } from "../../types/schema";
 import { createUser } from "../../services/UserService";
-import { CREATED, UNAUTHORIZED } from "http-status";
+import { CREATED, CONFLICT } from "http-status";
 import { ResourceAlreadyExist } from "../../utils/Error";
 import createHttpError from "http-errors";
 
@@ -16,7 +16,7 @@ const signup: signupReqHandler = async (req, res) => {
     res.status(CREATED).end();
   } catch (err) {
     if (err instanceof ResourceAlreadyExist) {
-      throw createHttpError(UNAUTHORIZED, "user already exist");
+      throw createHttpError(CONFLICT, "user already exist");
     }
     throw err;
   }
