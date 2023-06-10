@@ -13,6 +13,6 @@ authRoute
     .use(rateLimit_1.authLimiter)
     .post("/signup", (0, validate_1.default)(schemaValidation_1.userRegister), auth_1.default.signup)
     .post("/login", (0, validate_1.default)(schemaValidation_1.userLogin), auth_1.default.login)
-    .post("/refresh", auth_1.default.refreshToken)
+    .post("/refresh-token", auth_1.default.refreshToken)
     .post("/logout", auth_1.default.logout);
 exports.default = authRoute;

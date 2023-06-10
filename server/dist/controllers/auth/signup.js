@@ -18,7 +18,7 @@ const signup = async (req, res) => {
     }
     catch (err) {
         if (err instanceof Error_1.ResourceAlreadyExist) {
-            throw (0, http_errors_1.default)(http_status_1.UNAUTHORIZED, "user already exist");
+            throw (0, http_errors_1.default)(http_status_1.CONFLICT, "user already exist");
         }
         throw err;
     }

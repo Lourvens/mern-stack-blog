@@ -8,7 +8,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const env_1 = __importDefault(require("../config/env"));
 const generateAccessToken = (payload) => {
     return jsonwebtoken_1.default.sign(payload, env_1.default.ACCESS_TOKEN_KEY, {
-        expiresIn: "1h",
+        expiresIn: "15m",
     });
 };
 exports.generateAccessToken = generateAccessToken;
