@@ -42,12 +42,10 @@ const loadEnv = () => {
   }
 
   const requireEnv = (...requiredVars: string[]) => {
-    if (typeof envVars == "object") {
-      requiredVars.forEach((item) => {
-        const message = `${item} variable not found, server won't work properly, provide it on the env file`;
-        if (!envVars[item]) throw new Error(message);
-      });
-    }
+    requiredVars.forEach((item) => {
+      const message = `${item} variable not found, server won't work properly, provide it on the env file`;
+      if (!process.env[item]) throw new Error(message);
+    });
   };
 
   requireEnv("DB_URI", "ACCESS_TOKEN_KEY", "SECRET_TOKEN_KEY");
