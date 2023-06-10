@@ -11,7 +11,7 @@ authRoute
 
   .post("/signup", validate(userRegister), authCtrl.signup)
   .post("/login", validate(userLogin), authCtrl.login)
-  .post("/refresh", authCtrl.refreshToken)
+  .post("/refresh-token", authCtrl.refreshToken)
   .post("/logout", authCtrl.logout);
 
 export default authRoute;
