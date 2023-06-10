@@ -13,14 +13,11 @@ dist-ssr
 *.local
 #ignore uploaded file
 src/uploads/*
+
 # ignore env var
 .env
-.env.developemnt
-.env.production
-.env.test
 .env.dev
-.env.prod
-
+.env.test
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
