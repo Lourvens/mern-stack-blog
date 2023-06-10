@@ -31,6 +31,11 @@ const ArticleSchema = new mongoose_1.Schema({
         ref: "User",
         required: true,
     },
+    tag: {
+        type: String,
+        max: 12,
+        min: 3,
+    },
     comments: [CommentSchema],
 }, {
     timestamps: true,

@@ -21,10 +21,10 @@ const uploadImage = ({ dest, fieldname }) => {
     const Multer = (0, multer_1.default)({
         storage,
         limits: {
-            fileSize: 10 * 1024 * 1024, // 10mb
+            fileSize: 5 * 1024 * 1024, // 5mb
         },
         fileFilter(req, file, callback) {
-            let isValidMimetype = /image\/(png|jpg|jpeg)/.test(file.mimetype);
+            let isValidMimetype = /image/.test(file.mimetype);
             if (isValidMimetype) {
                 callback(null, true);
             }

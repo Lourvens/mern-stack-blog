@@ -32,6 +32,11 @@ const ArticleSchema = new Schema(
       ref: "User",
       required: true,
     },
+    tag: {
+      type: String,
+      max: 12,
+      min: 3,
+    },
     comments: [CommentSchema],
   },
   {
