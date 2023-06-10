@@ -10,7 +10,7 @@ const env_1 = __importDefault(require("./config/env"));
 const cli_color_1 = __importDefault(require("cli-color"));
 (0, loadEnv_1.default)();
 (0, connectDb_1.default)();
-app_1.default.listen(env_1.default.PORT, env_1.default.HOST, () => {
+app_1.default.listen(env_1.default.PORT, () => {
     console.clear();
-    console.log(cli_color_1.default.cyan(`server running at ${env_1.default.HOST}:${env_1.default.PORT}`));
+    console.log(cli_color_1.default.cyan(`server running on port ${env_1.default.PORT}`));
 });

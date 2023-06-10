@@ -12,7 +12,6 @@ const env = {
         DEV: NODE_ENV === "development",
         TEST: NODE_ENV === "test",
     },
-    HOST: (process.env.HOST || "localhost"),
     PORT: (process.env.PORT || 3000),
     DB_URI: process.env.DB_URI,
     ACCESS_TOKEN_KEY: process.env.ACCESS_TOKEN_KEY,

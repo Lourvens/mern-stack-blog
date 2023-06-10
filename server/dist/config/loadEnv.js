@@ -17,25 +17,34 @@ class Module {
     }
 }
 const loadEnv = () => {
-    // avoid multiple execution
+    // avoid multiple execution of this function
     if (Module.hasCalled())
         return;
+    let envVars;
     switch (NODE_ENV) {
         case "production":
-            dotenv_1.default.config({
+            envVars = dotenv_1.default.config({
                 path: path_1.default.join(__dirname, "..", "..", ".env"),
-            });
+            }).parsed;
             break;
         case "test":
-            dotenv_1.default.config({
+            envVars = dotenv_1.default.config({
                 path: path_1.default.join(__dirname, "..", "..", ".env.test"),
-            });
+            }).parsed;
             break;
         default:
-            let a = dotenv_1.default.config({
+            envVars = dotenv_1.default.config({
                 path: path_1.default.join(__dirname, "..", "..", ".env.dev"),
-            });
+            }).parsed;
             break;
     }
+    const requireEnv = (...requiredVars) => {
+        requiredVars.forEach((item) => {
+            const message = `${item} variable not found, server won't work properly, provide it on the env file`;
+            if (!process.env[item])
+                throw new Error(message);
+        });
+    };
+    requireEnv("DB_URI", "ACCESS_TOKEN_KEY", "SECRET_TOKEN_KEY");
 };
 exports.default = loadEnv;
