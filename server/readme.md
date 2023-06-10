@@ -1,18 +1,12 @@
-# !Alert this documentation hasn't completed yet!
-
-# My Blog - RESTful API Documentation
+# Project Name - RESTful API Documentation
 
 ## Introduction
 
-Welcome to the documentation for my Blog RESTful API. This API provides a set of endpoints to interact with our application and perform various operations. This document serves as a guide for developers who want to integrate with our API.
+Welcome to the documentation for the Blog RESTful API! This API provides functionality for managing a blog, including authentication, user management, and article management. Below, you will find detailed information on each endpoint and its available functionalities.
 
 ## API Base URL
 
-The base URL for all API endpoints is `https://api.example.com/v1/`.
-
-## Authentication
-
-All requests to the API must be authenticated using an API key. To authenticate, include the `Authorization` header in your request with the value `Bearer {api_key}`.
+API Base URL: `https://lourvens-blog-api.onrender.com`
 
 ## Error Handling
 
@@ -22,23 +16,22 @@ If an error occurs while processing a request, the API will return an appropriat
 
 The following table provides an overview of the available API endpoints:
 
-| Endpoint                           | Method | Description                 | access             |
-| ---------------------------------- | ------ | --------------------------- | ------------------ |
-| `/auth/signup`                     | POST   | Create a new user.          | any                |
-| `/auth/login`                      | POST   | login a user.               | any                |
-| `/auth/logout`                     | POST   |                             | any                |
-| `/auth/refresh`                    | POST   |                             | autheticated user  |
-| `/article?step=<number>`           | GET    | Retrieve 10 articles        | any                |
-| `/article/:article_id`             | GET    | Retrieve a specific article | any                |
-| `/article/:article_id/comment`     | POST   | Create a new comment        | authenticated user |
-| `/article/:article_id/comment/:id` | PUT    | Update an existing comment  | only same user     |
-| `/article/:article_id/comment/:id` | DELETE | Remove an existing comment  | only same user     |
+| Endpoint                 | Method | Description                                  |
+| ------------------------ | ------ | -------------------------------------------- |
+| `/users`                 | POST   | Create a new user.                           |
+| `/article?page=<number>` | GET    | Retrieve a list of 10 article in the system. |
+| `/article/{id}`          | GET    | Retrieve details for a specific article.     |
+
+For detailed information about each endpoint, including request and response examples, please refer to the [API Documentation](API_DOCUMENTATION.md).
 
 ## Getting Started
 
 To get started with the API, follow these steps:
 
-1. Create an account or login to an account
-2.
-3. Include the API key in the `Authorization` header of your API requests.
-4. Refer to the API Documentation for information on how to make requests to each endpoint and interpret the responses.
+1. Refer to the API Documentation for information on how to make requests to each endpoint and interpret the responses.
+
+2. Include the API key in the `Authorization` header of your API requests when you mutate details.
+
+## API Documentation
+
+For detailed information about each endpoint, including request and response examples, please refer to the [API Documentation](API_DOCUMENTATION.md) file.
