@@ -12,6 +12,7 @@ import { apiLimiter } from "./middlewares/rateLimit";
 import authRoute from "./routes/auth.routes";
 import userRoute from "./routes/user.routes";
 import articleRouter from "./routes/article.routes";
+import healthCheck from "./healthCheck";
 
 const app = express();
 
@@ -45,6 +46,8 @@ app.use("/assets", express.static(path.join(__dirname, "uploads")));
 app.use("/auth", authRoute);
 app.use("/user", userRoute);
 app.use("/article", articleRouter);
+
+app.all("/healthz", healthCheck);
 
 // error handler
 app.use(errorHandler);
