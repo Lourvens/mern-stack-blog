@@ -160,6 +160,7 @@ create a new article
 #### Request
 
 - Method: POST
+- content-type: multipart/form-data
 - Body:
 
 ```json
@@ -234,3 +235,40 @@ Update the content of a comment
 - `200 Ok` if the comment was successfully deleted.
 - `401 Unauthorized` if the user credentials are invalid.
 - `403 Forbbiden` if the user isn't the owner of the comment.
+
+### Endpoint: `/user`
+
+The articles endpoint provides functionality for managing user information
+
+#### `GET /user/:id`
+
+Retrieves a specific article with more details.
+
+#### Response
+
+- `200 Ok` if the request is successful, with the following response payload:
+
+```json
+{
+  "_id": "64736d63e2cfc0268a203",
+  "fullname": "Jhon Doe",
+  "email": "jhondoe@example.com",
+  "profile_picture": "0970fb4e-3ed4-4eef.jpg"
+}
+```
+
+#### `(POST | PUT) /user/avatar`
+
+update profile picture
+
+#### Request
+
+- Method: POST | PUT
+- content-type: multipart/form-data
+- Body:
+
+```json
+{
+  "avatar": <profile_picture.png>
+}
+```
