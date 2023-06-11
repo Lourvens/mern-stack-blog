@@ -83,7 +83,7 @@ Generates a new access token using a refresh token that will expire in 15 minute
 
 #### POST /auth/logout
 
-Logs out the user and remove their private token stored as a cookie.
+Logs out the user and remove his private token stored in the cookie storage.
 
 #### Response
 
@@ -102,5 +102,135 @@ Retrieves a list of 10 articles.
 - `200 Ok` if the request is successful, with the following response payload:
 
 ```json
-[{ _id: }]
+[
+  {
+    "_id": "6485e5cdfbc7e729f79",
+    "title": "title of this article here",
+    "content": "lorem ipsum doler sit amet consector",
+    "img_path": "cover_example.png" // GET /assets/blog/cover_example.png
+    "author": {
+      "_id": "64736dd5e2cfc0268a3030fe",
+      "fullname": "Jhon Doe",
+      "email": "jhondoe@example.com"
+    },
+    "createdAt": "2023-01-11T15:18:37.473Z",
+    "updatedAt": "2023-03-11T15:18:37.473Z"
+  },
+]
 ```
+
+#### `GET /article/:id`
+
+Retrieves a specific article with more details.
+
+#### Response
+
+- `200 Ok` if the request is successful, with the following response payload:
+
+```json
+{
+  "_id": "6485e5cdfbc7e729f79",
+  "title": "title of this article here",
+  "content": "lorem ipsum doler sit amet consector",
+  "img_path": "cover_example.png" // GET /assets/blog/cover_example.png
+  "author": {
+    "_id": "64736dd5e2cfc0268a3030fe",
+    "fullname": "Jhon Doe",
+    "email": "jhondoe@example.com"
+  },
+  "comments": [{
+      "author": {
+        "_id": "64736d63e2cfc0268a3039f7",
+        "fullname": "Darby Phillip",
+        "profile_picture": "darby.jpg" // GET /assets/avatar/darby.jpg
+      },
+      "content": "Just an example",
+      "_id": "6485e884fbc7e729f79bcf61"
+    }
+  ],
+  "createdAt": "2023-01-11T15:18:37.473Z",
+  "updatedAt": "2023-03-11T15:18:37.473Z"
+}
+```
+
+#### `POST /article/`
+
+create a new article
+
+#### Request
+
+- Method: POST
+- Body:
+
+```json
+{
+  "title": "title here",
+  "content": "article content here",
+  "cover": <blog_img.png> // provide a valid image file for the cover img of the article
+}
+```
+
+#### Response
+
+- `201 Created` if the article was successfully created.
+- `400 Bad Request` if the request payload is invalid.
+- `401 Unauthorized` if the user credentials are invalid.
+
+#### `DELETE /article/:article-id`
+
+#### Response
+
+- `200 Ok` if the article was successfully deleted.
+- `401 Unauthorized` if the user credentials are invalid.
+- `403 Forbbiden` if the user isn't the owner of the article.
+
+#### `POST /article/:article-id/comment`
+
+add a new comment to an article
+
+#### Request
+
+- Method: POST
+- Body:
+
+```json
+{
+  "content": "this is a comment"
+}
+```
+
+#### Response
+
+- `201 Created` if the comment was successfully added.
+- `400 Bad Request` if the request payload is invalid.
+- `401 Unauthorized` if the user credentials are invalid.
+
+#### `PUT /article/:article-id/comment/:id`
+
+Update the content of a comment
+
+#### Request
+
+- Method: PUT
+- Body:
+
+```json
+{
+  "content": "this is a comment"
+}
+```
+
+#### Response
+
+- `200 Ok` if the comment was successfully modified.
+- `400 Bad Request` if the request payload is invalid.
+- `401 Unauthorized` if the user credentials are invalid.
+- `403 Forbbiden` if the user isn't the owner of the comment.
+
+#### `DELETE /article/:article-id/comment/:id`
+
+#### Response
+
+- `200 Ok` if the comment was successfully deleted.
+- `401 Unauthorized` if the user credentials are invalid.
+- `403 Forbbiden` if the user isn't the owner of the comment.
