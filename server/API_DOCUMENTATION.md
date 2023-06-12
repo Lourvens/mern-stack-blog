@@ -89,11 +89,11 @@ Logs out the user and remove his private token stored in the cookie storage.
 
 - `204 No-Content`
 
-### Endpoint: `/article`
+### Endpoint: `/articles`
 
 The articles endpoint provides functionality for managing blog articles.
 
-#### `GET /article?page=<number>`
+#### `GET /articles?page=<number>`
 
 Retrieves a list of 10 articles.
 
@@ -119,7 +119,7 @@ Retrieves a list of 10 articles.
 ]
 ```
 
-#### `GET /article/:id`
+#### `GET /articles/:id`
 
 Retrieves a specific article with more details.
 
@@ -153,7 +153,7 @@ Retrieves a specific article with more details.
 }
 ```
 
-#### `POST /article/`
+#### `POST /articles/`
 
 create a new article
 
@@ -177,7 +177,7 @@ create a new article
 - `400 Bad Request` if the request payload is invalid.
 - `401 Unauthorized` if the user credentials are invalid.
 
-#### `DELETE /article/:article-id`
+#### `DELETE /articles/:article-id`
 
 #### Response
 
@@ -185,7 +185,7 @@ create a new article
 - `401 Unauthorized` if the user credentials are invalid.
 - `403 Forbbiden` if the user isn't the owner of the article.
 
-#### `POST /article/:article-id/comment`
+#### `POST /articles/:article-id/comments`
 
 add a new comment to an article
 
@@ -206,7 +206,7 @@ add a new comment to an article
 - `400 Bad Request` if the request payload is invalid.
 - `401 Unauthorized` if the user credentials are invalid.
 
-#### `PUT /article/:article-id/comment/:id`
+#### `PUT /articles/:article-id/comments/:id`
 
 Update the content of a comment
 
@@ -228,7 +228,7 @@ Update the content of a comment
 - `401 Unauthorized` if the user credentials are invalid.
 - `403 Forbbiden` if the user isn't the owner of the comment.
 
-#### `DELETE /article/:article-id/comment/:id`
+#### `DELETE /articles/:article-id/comments/:id`
 
 #### Response
 
@@ -236,11 +236,11 @@ Update the content of a comment
 - `401 Unauthorized` if the user credentials are invalid.
 - `403 Forbbiden` if the user isn't the owner of the comment.
 
-### Endpoint: `/user`
+### Endpoint: `/users`
 
 The articles endpoint provides functionality for managing user information
 
-#### `GET /user/:id`
+#### `GET /users/:id`
 
 Retrieves a specific article with more details.
 

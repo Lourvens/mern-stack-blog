@@ -10,7 +10,7 @@ const article_1 = __importDefault(require("../controllers/article"));
 const uploader_1 = __importDefault(require("../middlewares/uploader"));
 const validate_1 = __importDefault(require("../middlewares/validate"));
 const articleRouter = (0, express_1.Router)();
-const COMMENT_ROUTE = "/:article_id/comment";
+const COMMENT_ROUTE = "/:article_id/comments";
 /**
  * @Route /article
  */

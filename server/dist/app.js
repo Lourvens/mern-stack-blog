@@ -41,8 +41,8 @@ app.use(rateLimit_1.apiLimiter);
 app.use("/assets", express_1.default.static(path_1.default.join(__dirname, "uploads")));
 // api routes
 app.use("/auth", auth_routes_1.default);
-app.use("/user", user_routes_1.default);
-app.use("/article", article_routes_1.default);
+app.use("/users", user_routes_1.default);
+app.use("/articles", article_routes_1.default);
 app.all("/healthz", healthCheck_1.default);
 // error handler
 app.use(errorHandler_1.default);

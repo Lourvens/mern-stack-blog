@@ -44,8 +44,8 @@ app.use("/assets", express.static(path.join(__dirname, "uploads")));
 
 // api routes
 app.use("/auth", authRoute);
-app.use("/user", userRoute);
-app.use("/article", articleRouter);
+app.use("/users", userRoute);
+app.use("/articles", articleRouter);
 
 app.all("/healthz", healthCheck);
 

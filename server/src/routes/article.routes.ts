@@ -6,7 +6,7 @@ import uploadImage from "../middlewares/uploader";
 import validate from "../middlewares/validate";
 
 const articleRouter = Router();
-const COMMENT_ROUTE = "/:article_id/comment";
+const COMMENT_ROUTE = "/:article_id/comments";
 
 /**
  * @Route /article
