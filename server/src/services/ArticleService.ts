@@ -35,14 +35,21 @@ async function getOne(id: string) {
   return article;
 }
 
-// async function getOneRandomly(category?: string) {
-//   const randomPipeline = { $sample: { size: 1 } };
-//   // const projectPipeline = { $project: }
-//   const article = await Article.aggregate([randomPipeline, {$project: ["_id", ]}]).exec();
-//   if (article.length) {
+async function getOneRandomly(category?: string) {
+  const query: any = {};
+  if (category) {
+    query.category = category;
+  }
 
-//   }
-// }
+  const count = await Article.countDocuments(query);
+  const randomIndex = Math.floor(Math.random() * count);
+
+  const article = await filter(Article.findOne(query))
+    .skip(randomIndex)
+    .populate("comments.author", "fullname profile_picture")
+    .exec();
+  return { randomIndex, article };
+}
 
 async function compareUserIdAndDelete(article_id: string, user_id: string) {
   let article = await filter(Article.findById(article_id)).exec();
@@ -61,6 +68,7 @@ const ArticleService = {
   getArticles,
   getOne,
   compareUserIdAndDelete,
+  getOneRandomly,
   comment,
 };
 

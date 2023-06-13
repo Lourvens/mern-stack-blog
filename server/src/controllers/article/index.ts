@@ -1,5 +1,5 @@
 import * as commentRoutes from "./comments";
-import getArticles, { getArticleById } from "./getArticles";
+import getArticles, { getArticleById, getRandomArtcile } from "./getArticles";
 import postArticle from "./post";
 import deleteOne from "./delete";
 
@@ -8,6 +8,7 @@ const articleCtrl = {
   get: getArticles,
   getById: getArticleById,
   delete: deleteOne,
+  getRandomArtcile,
   ...commentRoutes,
 };
 

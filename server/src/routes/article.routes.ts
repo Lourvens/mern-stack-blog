@@ -15,6 +15,7 @@ articleRouter
   /**@return the last 10 article */
   .get("/", articleCtrl.get)
 
+  .get("/random", articleCtrl.getRandomArtcile)
   /**@return a single article with more details*/
   .get("/:id", articleCtrl.getById)
 
