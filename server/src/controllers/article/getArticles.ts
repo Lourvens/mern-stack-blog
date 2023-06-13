@@ -21,5 +21,13 @@ const getArticleByIdFn: RequestHandler<params> = async (req, res) => {
     throw createHttpError(BAD_REQUEST, "invalid article id");
   }
 };
+
+const getRandomArtcileFn: RequestHandler = async (req, res) => {
+  const { category } = req.query;
+  const article = await ArticleService.getOneRandomly(category as string);
+  res.json(article);
+};
+
+export const getRandomArtcile = asyncHandler(getRandomArtcileFn);
 export const getArticleById = asyncHandler(getArticleByIdFn);
 export default asyncHandler(getArticles);

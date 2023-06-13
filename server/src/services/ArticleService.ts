@@ -5,7 +5,7 @@ import { ForbbidenResourceMutation, ResourceNotFound } from "../utils/Error";
 
 type createArticleData = Pick<
   articleProp,
-  "author" | "title" | "img_path" | "content"
+  "author" | "title" | "img_path" | "content" | "category"
 >;
 type filterFn = ReturnType<typeof Article.find | typeof Article.findById>;
 
@@ -35,6 +35,22 @@ async function getOne(id: string) {
   return article;
 }
 
+async function getOneRandomly(category?: string) {
+  const query: any = {};
+  if (category) {
+    query.category = category;
+  }
+
+  const count = await Article.countDocuments(query);
+  const randomIndex = Math.floor(Math.random() * count);
+
+  const article = await filter(Article.findOne(query))
+    .skip(randomIndex)
+    .populate("comments.author", "fullname profile_picture")
+    .exec();
+  return { randomIndex, article };
+}
+
 async function compareUserIdAndDelete(article_id: string, user_id: string) {
   let article = await filter(Article.findById(article_id)).exec();
 
@@ -52,6 +68,7 @@ const ArticleService = {
   getArticles,
   getOne,
   compareUserIdAndDelete,
+  getOneRandomly,
   comment,
 };
 
