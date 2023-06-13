@@ -32,7 +32,7 @@ const ArticleSchema = new Schema(
       ref: "User",
       required: true,
     },
-    tag: {
+    category: {
       type: String,
       max: 12,
       min: 3,

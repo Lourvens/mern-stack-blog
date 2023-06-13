@@ -5,7 +5,7 @@ import { ForbbidenResourceMutation, ResourceNotFound } from "../utils/Error";
 
 type createArticleData = Pick<
   articleProp,
-  "author" | "title" | "img_path" | "content"
+  "author" | "title" | "img_path" | "content" | "category"
 >;
 type filterFn = ReturnType<typeof Article.find | typeof Article.findById>;
 
@@ -34,6 +34,15 @@ async function getOne(id: string) {
     .exec();
   return article;
 }
+
+// async function getOneRandomly(category?: string) {
+//   const randomPipeline = { $sample: { size: 1 } };
+//   // const projectPipeline = { $project: }
+//   const article = await Article.aggregate([randomPipeline, {$project: ["_id", ]}]).exec();
+//   if (article.length) {
+
+//   }
+// }
 
 async function compareUserIdAndDelete(article_id: string, user_id: string) {
   let article = await filter(Article.findById(article_id)).exec();

@@ -17,6 +17,7 @@ export const articleSchema = z
   .object({
     title: z.string().min(3).max(255),
     content: z.string().min(255).max(100_000),
+    category: z.string().min(3).max(25),
   })
   .required();
 
