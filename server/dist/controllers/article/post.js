@@ -10,7 +10,7 @@ const http_status_1 = require("http-status");
 const http_errors_1 = __importDefault(require("http-errors"));
 const postArticle = async (req, res) => {
     const { id: userID } = (0, useCredential_1.default)(req);
-    const { content, title } = req.body;
+    const { content, title, category } = req.body;
     let img_path = req.file?.filename;
     if (!img_path) {
         throw (0, http_errors_1.default)(400, "a cover image is required in the image field");
@@ -19,6 +19,7 @@ const postArticle = async (req, res) => {
         author: userID,
         content,
         title,
+        category,
         img_path,
     });
     res.status(http_status_1.CREATED).end();

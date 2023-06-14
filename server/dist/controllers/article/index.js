@@ -35,6 +35,7 @@ const articleCtrl = {
     get: getArticles_1.default,
     getById: getArticles_1.getArticleById,
     delete: delete_1.default,
+    getRandomArtcile: getArticles_1.getRandomArtcile,
     ...commentRoutes,
 };
 exports.default = articleCtrl;

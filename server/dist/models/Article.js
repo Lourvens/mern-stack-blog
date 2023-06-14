@@ -31,7 +31,7 @@ const ArticleSchema = new mongoose_1.Schema({
         ref: "User",
         required: true,
     },
-    tag: {
+    category: {
         type: String,
         max: 12,
         min: 3,

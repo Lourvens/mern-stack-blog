@@ -17,6 +17,7 @@ const COMMENT_ROUTE = "/:article_id/comments";
 articleRouter
     /**@return the last 10 article */
     .get("/", article_1.default.get)
+    .get("/random", article_1.default.getRandomArtcile)
     /**@return a single article with more details*/
     .get("/:id", article_1.default.getById)
     .use(authGuard_1.isAuthenticated)

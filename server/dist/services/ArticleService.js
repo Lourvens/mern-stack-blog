@@ -26,6 +26,19 @@ async function getOne(id) {
         .exec();
     return article;
 }
+async function getOneRandomly(category) {
+    const query = {};
+    if (category) {
+        query.category = category;
+    }
+    const count = await Article_1.default.countDocuments(query);
+    const randomIndex = Math.floor(Math.random() * count);
+    const article = await filter(Article_1.default.findOne(query))
+        .skip(randomIndex)
+        .populate("comments.author", "fullname profile_picture")
+        .exec();
+    return article;
+}
 async function compareUserIdAndDelete(article_id, user_id) {
     let article = await filter(Article_1.default.findById(article_id)).exec();
     if (!article)
@@ -42,6 +55,7 @@ const ArticleService = {
     getArticles,
     getOne,
     compareUserIdAndDelete,
+    getOneRandomly,
     comment: commentArticleService_1.default,
 };
 exports.default = ArticleService;
