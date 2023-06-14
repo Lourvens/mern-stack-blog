@@ -1,4 +1,4 @@
-import { LOGIN_ROUTE, REGISTER_ROUTE } from "@/contants/routes";
+import { LOGIN_ROUTE, REGISTER_ROUTE } from "@/constants/routes";
 import { Link } from "react-router-dom";
 
 const Header = () => {
