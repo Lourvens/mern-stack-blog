@@ -1,6 +1,7 @@
+import type { article } from "@/types/request";
 import { axiosInstance } from "../axiosInstance";
 
-const PATH = "/article";
+const PATH = "/articles";
 
 class ArticleService {
   static getAll(page = 0) {
@@ -15,7 +16,7 @@ class ArticleService {
 
   // get a random article from the api
   static random(category: string) {
-    return axiosInstance.get("/article/random", {
+    return axiosInstance.get<article>(`${PATH}/random`, {
       params: { category },
     });
   }
