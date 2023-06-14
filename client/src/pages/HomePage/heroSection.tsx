@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 import ArticleService from "@/service/api/articleService";
 import { article } from "@/types/request";
 import images from "@/constants/images";
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import truncateStr from "@/utils/truncateStr";
 import { ARTICLE_ROUTE } from "@/constants/routes";
 
