@@ -13,6 +13,7 @@ class ArticleService {
     return axiosInstance.get(`${PATH}/${id}`);
   }
 
+  // get a random article from the api
   static random(category: string) {
     return axiosInstance.get("/article/random", {
       params: { category },
