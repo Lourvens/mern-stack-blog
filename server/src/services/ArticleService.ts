@@ -48,7 +48,7 @@ async function getOneRandomly(category?: string) {
     .skip(randomIndex)
     .populate("comments.author", "fullname profile_picture")
     .exec();
-  return { randomIndex, article };
+  return article;
 }
 
 async function compareUserIdAndDelete(article_id: string, user_id: string) {
