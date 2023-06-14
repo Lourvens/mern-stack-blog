@@ -16,10 +16,6 @@ import healthCheck from "./healthCheck";
 
 const app = express();
 
-if (env.mode.DEV) {
-  app.use(morgan("dev"));
-}
-
 if (env.mode.PROD) {
   app.use(helmet());
   app.use(
@@ -35,6 +31,7 @@ if (env.mode.PROD) {
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(morgan("dev"));
 
 // rate limiter
 app.use(apiLimiter);
