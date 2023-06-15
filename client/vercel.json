@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://lourvens-blog-api.onrender.com$1"
+      "destination": "https://lourvens-blog-api.onrender.com/$1"
     }
   ]
 }
