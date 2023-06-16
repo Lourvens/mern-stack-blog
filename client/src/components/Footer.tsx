@@ -22,7 +22,7 @@ function Footer() {
                 type="checkbox"
                 className="toggle toggle-primary toggle-sm"
                 checked={theme == "dark"}
-                onClick={toggleTheme}
+                onChange={toggleTheme}
               />
               <span className="label-text">Dark theme</span>
             </label>
