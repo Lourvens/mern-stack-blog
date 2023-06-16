@@ -4,13 +4,16 @@ import App from "./App.tsx";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 import "./index.css";
+import { ThemeProvider } from "./fetures/theme.tsx";
 
 const client = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={client}>
-      <App />
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );
