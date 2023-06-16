@@ -29,7 +29,7 @@ function Footer() {
           </div>
 
           <div>
-            <a href="https://lourvens.vercle.app" className="link link-primary">
+            <a href="https://lourvens.vercel.app" className="link link-primary">
               About me
             </a>
           </div>
