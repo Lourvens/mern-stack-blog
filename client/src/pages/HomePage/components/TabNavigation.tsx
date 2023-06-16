@@ -7,8 +7,8 @@ const TabNavigation = ({ items, selectedValue, onChange }: Props) => {
         <li key={item}>
           <button
             className={clsx(
-              `btn btn-ghost px-6 rounded-full`,
-              selectedValue == item && "btn-active"
+              `btn px-6 rounded-full text-neutral`,
+              selectedValue == item ? "btn-primary  text-white" : "text-primary"
             )}
             onClick={() => {
               onChange(item);

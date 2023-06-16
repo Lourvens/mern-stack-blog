@@ -8,9 +8,6 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-.btn {
-  @apply text-white;
-}
 
 @keyframes pulse {
   50% {

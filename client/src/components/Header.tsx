@@ -9,7 +9,10 @@ const Header = () => {
       </h1>
 
       <div className="flex gap-3">
-        <Link to={LOGIN_ROUTE} className="btn btn-outline btn-sm lg:btn-md">
+        <Link
+          to={LOGIN_ROUTE}
+          className="btn btn-outline btn-sm lg:btn-md text-white"
+        >
           login
         </Link>
         <Link to={REGISTER_ROUTE} className="btn btn-primary btn-sm lg:btn-md">
