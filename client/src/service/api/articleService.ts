@@ -2,10 +2,11 @@ import type { article } from "@/types/request";
 import { axiosInstance } from "../axiosInstance";
 import { ARTICLE_ROUTE } from "@/constants/routes";
 
+type params = { page?: number; category?: string };
 class ArticleService {
-  static getAll(page = 0) {
-    return axiosInstance.get(ARTICLE_ROUTE, {
-      params: { page },
+  static getAll(params?: params) {
+    return axiosInstance.get<article[]>(ARTICLE_ROUTE, {
+      params,
     });
   }
 
