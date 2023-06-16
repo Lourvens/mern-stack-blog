@@ -29,9 +29,9 @@ export function ThemeProvider({ children }: Prop) {
 
   useEffect(() => {
     if (theme == "dark") {
-      document.documentElement.dataset.theme = "light";
-    } else {
       document.documentElement.dataset.theme = "dark";
+    } else {
+      document.documentElement.dataset.theme = "light";
     }
     // save the theme in localstorage everytime is changed
     localStorage.setItem("theme", theme);
