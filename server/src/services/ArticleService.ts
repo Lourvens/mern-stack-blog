@@ -17,11 +17,14 @@ async function create(data: createArticleData) {
   await newArticle.save();
 }
 
-async function getArticles(step?: number) {
-  const articles = await filter(Article.find())
-    .skip(step || 0)
+type params = { page?: number; category?: string };
+async function getArticles(params?: params) {
+  let query = {};
+  if (params?.category) query = { category: params.category };
+  const articles = await filter(Article.find(query))
+    .skip(params?.page || 0)
     .select("-comments")
-    .limit(20)
+    .limit(10)
     .sort("-1")
     .exec();
 
