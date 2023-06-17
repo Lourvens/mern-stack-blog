@@ -12,7 +12,7 @@ function Card(article: article) {
     <Link
       to={`${ARTICLE_ROUTE}/${article._id}`}
       key={article._id}
-      className="btn-ghost  h-auto w-auto p-2 rounded-xl"
+      className="btn-ghost h-auto w-auto p-2 rounded-xl"
     >
       <div className="flex gap-3 w-full">
         <div className="w-full">
@@ -29,6 +29,7 @@ function Card(article: article) {
             <span>{momment(article.updatedAt).fromNow()}</span>
           </div>
         </div>
+
         <div className="shrink-0 w-24 h-24 rounded-xl bg-slate-500"></div>
       </div>
     </Link>

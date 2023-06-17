@@ -4,6 +4,7 @@ import TabNavigation from "./components/TabNavigation";
 import ArticleService from "@/service/api/articleService";
 import Card from "./components/CardArticle";
 import NoArticleItem from "./components/NoArticleItem";
+import CardSkeleton from "./components/CardSkeleton";
 
 const MainSection = () => {
   const categories = [
@@ -18,7 +19,7 @@ const MainSection = () => {
   ];
   const [selectedCategory, updateCategory] = useState(categories[0]);
 
-  const { data, isFetched } = useQuery({
+  const { data, isFetched, isLoading } = useQuery({
     queryKey: ["articles", { category: selectedCategory }],
     queryFn: async () => {
       let filterQuery = {};
@@ -38,12 +39,13 @@ const MainSection = () => {
       />
       {/* List Item */}
       <div className="mt-6 px-3 grid gap-10 md:grid-cols-2 lg:gap-x-10 lg:px-16">
+        {isLoading && <CardSkeleton />}
         {isFetched &&
           data?.map((article) => <Card key={article._id} {...article} />)}
       </div>
 
       {/* if data is empty  */}
-      {isFetched && !data?.length && (
+      {!isLoading && isFetched && !data?.length && (
         <NoArticleItem category={selectedCategory} />
       )}
     </div>
