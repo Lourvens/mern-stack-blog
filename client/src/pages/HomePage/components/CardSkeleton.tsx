@@ -1,7 +1,7 @@
 function CardSkeleton() {
   return (
     <>
-      {Array.from(Array(6)).map((value, index) => (
+      {Array.from(Array(6)).map((item, index) => (
         <div
           className="animate-pulse flex bg-gray-200 dark:bg-gray-700 p-2 rounded-xl"
           key={`${index}`}
