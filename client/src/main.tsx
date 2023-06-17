@@ -4,7 +4,7 @@ import App from "./App.tsx";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 import "./index.css";
-import { ThemeProvider } from "./fetures/theme.tsx";
+import { ThemeProvider } from "./features/theme.tsx";
 
 const client = new QueryClient();
 

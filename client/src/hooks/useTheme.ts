@@ -1,4 +1,4 @@
-import { themeContext } from "@/fetures/theme";
+import { themeContext } from "@/features/theme";
 import { useContext } from "react";
 
 function useTheme() {

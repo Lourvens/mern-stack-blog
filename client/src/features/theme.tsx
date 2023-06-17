@@ -16,12 +16,13 @@ export function ThemeProvider({ children }: Prop) {
   const [theme, updateTheme] = useState<theme["theme"]>("light");
 
   useEffect(() => {
-    const localTheme = localStorage.getItem("theme");
+    const localTheme = localStorage.getItem("theme") as theme["theme"];
     const systemDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
 
-    if (localTheme && localTheme != theme) {
-      updateTheme(theme);
+    if (localTheme) {
+      theme != localTheme && updateTheme(localTheme);
     } else if (systemDarkTheme.matches && theme != "dark") {
+      console.log("system theme");
       updateTheme("dark");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
