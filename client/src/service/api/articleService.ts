@@ -11,7 +11,7 @@ class ArticleService {
   }
 
   static getById(id: string) {
-    return axiosInstance.get(`${ARTICLE_ROUTE}/${id}`);
+    return axiosInstance.get<article>(`${ARTICLE_ROUTE}/${id}`);
   }
 
   // get a random article from the api
