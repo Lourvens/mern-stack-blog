@@ -1,10 +1,10 @@
 import Header from "@/components/Header";
 import { useQuery } from "react-query";
 import ArticleService from "@/service/api/articleService";
-import images from "@/constants/images";
 import { useState } from "react";
 import Carousel from "./components/Carousel";
 import CarouselSkeleton from "./components/CarouselSkeleton";
+import { IMAGES } from "@/utils/constants";
 
 const HeroSection = () => {
   const articleCategories = ["technology", "business", "science"] as const;
@@ -25,7 +25,7 @@ const HeroSection = () => {
   return (
     <section className="relative overflow-hidden">
       <img
-        src={images[selectedCategory]}
+        src={IMAGES[selectedCategory]}
         className="absolute brightness-[.3] h-full w-full object-cover"
       />
       <div className="relative px-4 py-6 lg:px-10 text-white">

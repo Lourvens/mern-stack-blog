@@ -1,6 +1,8 @@
 import type { article } from "@/types/request";
 import { axiosInstance } from "../axiosInstance";
-import { ARTICLE_ROUTE } from "@/constants/routes";
+import { API_ROUTE } from "@/utils/constants";
+
+const ARTICLE_ROUTE = API_ROUTE.ARTICLE;
 
 type params = { page?: number; category?: string };
 class ArticleService {

@@ -3,11 +3,19 @@ import technologyCoverImg from "@/assets/technology_cover_bg.jpg";
 import businessCoverImg from "@/assets/business_cover_bg.jpg";
 import articleReadingImg from "@/assets/reading.svg";
 
-const images = {
+export const APP_ROUTE = {
+  LOGIN: "/auth/login",
+  REGISTER: "/auth/register",
+  ARTICLE_VIEWER: "/articles/:id",
+};
+
+export const API_ROUTE = {
+  ARTICLE: "/articles",
+};
+
+export const IMAGES = {
   business: businessCoverImg,
   technology: technologyCoverImg,
   science: scienceCoverImg,
   articleRead: articleReadingImg,
 };
-
-export default images;

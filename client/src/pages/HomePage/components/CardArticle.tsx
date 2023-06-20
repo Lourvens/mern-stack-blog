@@ -2,15 +2,15 @@ import truncateStr from "@/utils/truncateStr";
 import momment from "moment";
 import calculateReadingTime from "@/utils/calculateReadingTime";
 import { Link } from "react-router-dom";
-import { ARTICLE_ROUTE } from "@/constants/routes";
 
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { article } from "@/types/request";
+import { API_ROUTE } from "@/utils/constants";
 
 function Card(article: article) {
   return (
     <Link
-      to={`${ARTICLE_ROUTE}/${article._id}`}
+      to={`${API_ROUTE.ARTICLE}/${article._id}`}
       key={article._id}
       className="btn-ghost h-auto w-auto p-2 rounded-xl"
     >

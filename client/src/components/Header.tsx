@@ -1,21 +1,26 @@
-import { LOGIN_ROUTE, REGISTER_ROUTE } from "@/constants/routes";
+import { APP_ROUTE } from "@/utils/constants";
 import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <header className="flex justify-between items-center text-white">
-      <h1 className="text-xl text-white lg:text-2xl">
-        Blog<b>Lab</b>
-      </h1>
+      <Link to="/">
+        <h1 className="text-xl text-white lg:text-2xl">
+          Blog<b>Lab</b>
+        </h1>
+      </Link>
 
       <div className="flex gap-3">
         <Link
-          to={LOGIN_ROUTE}
+          to={APP_ROUTE.LOGIN}
           className="btn btn-outline btn-sm lg:btn-md text-white"
         >
           login
         </Link>
-        <Link to={REGISTER_ROUTE} className="btn btn-primary btn-sm lg:btn-md">
+        <Link
+          to={APP_ROUTE.REGISTER}
+          className="btn btn-primary btn-sm lg:btn-md"
+        >
           Register
         </Link>
       </div>

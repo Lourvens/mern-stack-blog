@@ -1,9 +1,9 @@
 import truncateStr from "@/utils/truncateStr";
-import { ARTICLE_ROUTE } from "@/constants/routes";
 import { article } from "@/types/request";
 
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { API_ROUTE } from "@/utils/constants";
 
 type carouselProp = {
   items: article[];
@@ -32,7 +32,7 @@ const Carousel = ({ items, selected, onChange }: carouselProp) => {
         </h1>
       </div>
       <Link
-        to={`${ARTICLE_ROUTE}/${article._id}`}
+        to={`${API_ROUTE.ARTICLE}/${article._id}`}
         className="place-self-start btn btn-ghost bg-primary bg-opacity-30 capitalize gap-3"
       >
         read article <AiOutlineArrowRight />
