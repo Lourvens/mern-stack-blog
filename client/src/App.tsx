@@ -2,6 +2,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ArticlePage from "./pages/ArticlePage";
 import { APP_ROUTE } from "./utils/constants";
+import AppLayout from "./components/Layout";
+import LoginPage from "./pages/AuthPages/LoginPage";
+import RegisterPage from "./pages/AuthPages/RegisterPage";
 
 function App() {
   return (
@@ -9,7 +12,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<HomePage />} />
-          <Route path={APP_ROUTE.ARTICLE_VIEWER} element={<ArticlePage />} />
+          <Route element={<AppLayout />}>
+            <Route path={APP_ROUTE.ARTICLE_VIEWER} element={<ArticlePage />} />
+            <Route path={APP_ROUTE.LOGIN} element={<LoginPage />} />
+            <Route path={APP_ROUTE.REGISTER} element={<RegisterPage />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>
