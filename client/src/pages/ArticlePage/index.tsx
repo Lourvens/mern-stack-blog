@@ -43,7 +43,7 @@ const ArticlePage = () => {
               </div>
               <div className="flex gap-1">
                 <AiOutlineMessage className="text-sm" />
-                {abbreviateNumber(230000)}
+                {data?.comments && abbreviateNumber(data.comments.length)}
               </div>
             </div>
           </div>
@@ -63,12 +63,12 @@ const ArticlePage = () => {
                 </div>
               )}
             </div>
-            <div>
-              <h1 className="text-primary">{data?.author.fullname}</h1>
-              <h3 className="capitalize text-subtitle">
-                author, educator and content creator
-              </h3>
-            </div>
+            <h1 className="dark:text-white flex gap-x-2 items-center text-sm">
+              <span>By</span>
+              <span className="text-primary">{data?.author.fullname}</span>
+              <span className="text-4xl">&middot;</span>
+              <span>{moment(data?.createdAt).format("ll")}</span>
+            </h1>
           </div>
           <p className="mt-8">{data?.content}</p>
         </div>
