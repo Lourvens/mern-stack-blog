@@ -11,6 +11,9 @@ export const APP_ROUTE = {
 
 export const API_ROUTE = {
   ARTICLE: "/articles",
+  REFRESH: "/auth/refresh-token",
+  LOGIN: APP_ROUTE.LOGIN,
+  REGISTER: APP_ROUTE.REGISTER,
 };
 
 export const IMAGES = {

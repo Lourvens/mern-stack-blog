@@ -19,3 +19,7 @@
 .form-container h3 a {
   @apply text-primary capitalize;
 }
+
+.form-container button {
+ @apply btn btn-primary text-white
+}
