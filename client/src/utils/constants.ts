@@ -13,7 +13,8 @@ export const API_ROUTE = {
   ARTICLE: "/articles",
   REFRESH: "/auth/refresh-token",
   LOGIN: APP_ROUTE.LOGIN,
-  REGISTER: APP_ROUTE.REGISTER,
+  SIGNUP: "/auth/signup",
+  LOGOUT: "/auth/logout",
 };
 
 export const IMAGES = {

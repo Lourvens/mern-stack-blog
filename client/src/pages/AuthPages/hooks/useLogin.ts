@@ -12,7 +12,7 @@ function useLogin() {
   const [errorMessage, setErrorMessage] = useState<string>();
   const location = useLocation();
 
-  const prevroute = location.state?.prevroute || "/";
+  const from = location.state?.from || "/";
   const navigate = useNavigate();
 
   const submit = async (values: user) => {
@@ -20,7 +20,7 @@ function useLogin() {
       setLoading(true);
       const resp = await authService.login(values);
       setAuth(resp.data.access_token);
-      navigate(prevroute);
+      navigate(from);
     } catch (err) {
       if (err instanceof UNAUTHORIZED_ERR) {
         setErrorMessage("user or password is incorrect");

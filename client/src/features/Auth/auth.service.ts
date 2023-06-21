@@ -9,7 +9,11 @@ function login(values: Omit<user, "fullname">) {
 }
 
 function signup(values: user) {
-  return axiosInstance.post<null>(API_ROUTE.REGISTER, values);
+  return axiosInstance.post<null>(API_ROUTE.SIGNUP, values);
+}
+
+function logout() {
+  return axiosInstance.post<null>(API_ROUTE.LOGOUT);
 }
 
 function refreshToken() {
@@ -19,5 +23,6 @@ function refreshToken() {
 export default {
   login,
   signup,
+  logout,
   refreshToken,
 };

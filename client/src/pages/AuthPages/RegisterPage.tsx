@@ -1,6 +1,8 @@
 import { APP_ROUTE } from "@/utils/constants";
 import { Link } from "react-router-dom";
-
+import useRegister from "./hooks/useRegister";
+import AlertCard from "./components/AlertCard";
+import clsx from "clsx";
 import { FaUserAlt, FaEnvelope, FaLock } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -20,6 +22,7 @@ const formSchema = z
 type formSchema = z.infer<typeof formSchema>;
 
 const RegisterPage = () => {
+  const { submit, isLoading, errorMessage } = useRegister();
   const { register, handleSubmit, formState } = useForm<formSchema>({
     resolver: zodResolver(formSchema),
     mode: "onBlur",
@@ -31,7 +34,10 @@ const RegisterPage = () => {
       <h3>
         already a member? <Link to={APP_ROUTE.LOGIN}>log in</Link>
       </h3>
-      <form>
+
+      <AlertCard message={errorMessage} />
+
+      <form onSubmit={handleSubmit(submit)}>
         <InputField
           type="text"
           icon={<FaUserAlt />}
@@ -50,7 +56,9 @@ const RegisterPage = () => {
           errorMsg={formState.errors.password?.message}
           {...register("password")}
         />
-        <button className="btn btn-primary text-white">Create Account</button>
+        <button className={clsx({ loading: isLoading })} disabled={isLoading}>
+          Create Account
+        </button>
       </form>
     </div>
   );

@@ -1,13 +1,15 @@
 import { useContext } from "react";
 import authContext, { AuthProp } from "./auth.context";
 import jwtDecode from "jwt-decode";
+import authService from "./auth.service";
 
 function useAuth() {
   const context = useContext(authContext);
 
   if (!context) throw new Error("auth context cannot be empty");
 
-  function clearUserCredential() {
+  async function logout() {
+    await authService.logout();
     context?.setCredentials();
   }
 
@@ -20,7 +22,7 @@ function useAuth() {
 
   return {
     setAuth,
-    clearUserCredential,
+    logout,
     credential: context.credentials,
     access_token: context.credentials?.access_token,
     isAuthenticated: !!context.credentials,
