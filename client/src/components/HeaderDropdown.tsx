@@ -5,10 +5,15 @@ import {
   AiOutlineLogout,
 } from "react-icons/ai";
 import { ReactNode } from "react";
+import useAuth from "@/features/Auth/useAuth";
+import truncateStr from "@/utils/truncateStr";
 
 type Prop = { img_url?: string; fullname: string };
 
 const HeaderDropdown = ({ img_url, fullname }: Prop) => {
+  const { logout } = useAuth();
+
+  // TODO: create one single component for LinkItem and Button and avoid code duplication.
   type linkProp = { to: string; icon: ReactNode; title: string };
   const LinkItem = (props: linkProp) => (
     <li className="text-lg text-gray-600">
@@ -19,6 +24,19 @@ const HeaderDropdown = ({ img_url, fullname }: Prop) => {
         {props.icon}
         <span>{props.title}</span>
       </Link>
+    </li>
+  );
+
+  type buttonProp = { icon: ReactNode; title: string; onClick: () => void };
+  const Button = (props: buttonProp) => (
+    <li className="text-lg text-gray-600">
+      <button
+        onClick={props.onClick}
+        className="p-2 gap-3 capitalize dark:text-primary-focus"
+      >
+        {props.icon}
+        <span>{props.title}</span>
+      </button>
     </li>
   );
 
@@ -47,7 +65,7 @@ const HeaderDropdown = ({ img_url, fullname }: Prop) => {
             </div>
           </div>
         )}
-        <span>{fullname}</span>
+        <span>{truncateStr(fullname, 18)}</span>
       </label>
 
       {/* dropdown content */}
@@ -58,7 +76,7 @@ const HeaderDropdown = ({ img_url, fullname }: Prop) => {
         <LinkItem icon={<AiOutlineUser />} to="" title="your profile" />
         <LinkItem icon={<AiOutlineFileAdd />} to="" title="new article" />
         <div className="divider m-0"></div>
-        <LinkItem icon={<AiOutlineLogout />} to="" title="logout" />
+        <Button icon={<AiOutlineLogout />} onClick={logout} title="logout" />
       </ul>
     </div>
   );
