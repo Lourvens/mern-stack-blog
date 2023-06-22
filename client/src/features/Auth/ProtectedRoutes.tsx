@@ -1,4 +1,4 @@
-import { Navigate, Outlet, useLocation, RouteProps } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import useAuth from "./useAuth";
 import { APP_ROUTE } from "@/utils/constants";
 
