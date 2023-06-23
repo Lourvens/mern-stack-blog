@@ -1,5 +1,5 @@
 import authService from "@/features/Auth/auth.service";
-import useAuth from "@/features/Auth/useAuth";
+import useAuth from "@/hooks/useAuth";
 import { TOO_MANY_REQUESTS_ERR, UNAUTHORIZED_ERR } from "@/utils/httpError";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";

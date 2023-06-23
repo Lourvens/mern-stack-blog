@@ -1,4 +1,4 @@
-import useAuth from "@/features/Auth/useAuth";
+import useAuth from "@/hooks/useAuth";
 import { APP_ROUTE } from "@/utils/constants";
 import { Link } from "react-router-dom";
 import HeaderDropdown from "./HeaderDropdown";

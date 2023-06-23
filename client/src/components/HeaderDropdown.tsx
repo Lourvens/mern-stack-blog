@@ -5,7 +5,7 @@ import {
   AiOutlineLogout,
 } from "react-icons/ai";
 import { ReactNode } from "react";
-import useAuth from "@/features/Auth/useAuth";
+import useAuth from "@/hooks/useAuth";
 import truncateStr from "@/utils/truncateStr";
 import { APP_ROUTE } from "@/utils/constants";
 import Avatar from "./Avatar";

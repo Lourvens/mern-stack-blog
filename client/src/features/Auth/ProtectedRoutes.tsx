@@ -1,5 +1,5 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import useAuth from "./useAuth";
+import useAuth from "@/hooks/useAuth";
 import { APP_ROUTE } from "@/utils/constants";
 
 function ProtectedRoutes() {

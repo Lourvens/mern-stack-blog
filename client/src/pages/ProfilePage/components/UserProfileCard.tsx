@@ -1,5 +1,5 @@
 import Avatar from "@/components/Avatar";
-import useAuth from "@/features/Auth/useAuth";
+import useAuth from "@/hooks/useAuth";
 import { useRef, useState } from "react";
 import { AiFillCamera } from "react-icons/ai";
 
