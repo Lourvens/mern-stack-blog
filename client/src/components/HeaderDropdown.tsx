@@ -7,6 +7,8 @@ import {
 import { ReactNode } from "react";
 import useAuth from "@/features/Auth/useAuth";
 import truncateStr from "@/utils/truncateStr";
+import { APP_ROUTE } from "@/utils/constants";
+import Avatar from "./Avatar";
 
 type Prop = { img_url?: string; fullname: string };
 
@@ -46,25 +48,7 @@ const HeaderDropdown = ({ img_url, fullname }: Prop) => {
         tabIndex={0}
         className="border flex items-center rounded-full mb-4 gap-2 py-1 px-2 cursor-pointer"
       >
-        {/* avatar */}
-        {img_url ? (
-          <div className="avatar">
-            <div className="w-8 rounded-full">
-              <img
-                src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-                alt="Tailwind-CSS-Avatar-component"
-              />
-            </div>
-          </div>
-        ) : (
-          <div className="avatar placeholder">
-            <div className="bg-neutral-focus text-neutral-content rounded-full w-8">
-              <span className="text-xs font-semibold">
-                {fullname.substring(0, 2)}
-              </span>
-            </div>
-          </div>
-        )}
+        <Avatar fullname={fullname} img_url={img_url} />
         <span>{truncateStr(fullname, 18)}</span>
       </label>
 
@@ -73,7 +57,11 @@ const HeaderDropdown = ({ img_url, fullname }: Prop) => {
         tabIndex={0}
         className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded w-56"
       >
-        <LinkItem icon={<AiOutlineUser />} to="" title="your profile" />
+        <LinkItem
+          icon={<AiOutlineUser />}
+          to={APP_ROUTE.PROFILE}
+          title="your profile"
+        />
         <LinkItem icon={<AiOutlineFileAdd />} to="" title="new article" />
         <div className="divider m-0"></div>
         <Button icon={<AiOutlineLogout />} onClick={logout} title="logout" />

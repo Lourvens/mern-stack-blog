@@ -7,6 +7,7 @@ export const APP_ROUTE = {
   LOGIN: "/auth/login",
   REGISTER: "/auth/register",
   ARTICLE_VIEWER: "/articles/:id",
+  PROFILE: "/me"
 };
 
 export const API_ROUTE = {

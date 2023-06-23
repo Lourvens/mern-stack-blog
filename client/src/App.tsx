@@ -5,6 +5,8 @@ import { APP_ROUTE } from "./utils/constants";
 import AppLayout from "./components/Layout";
 import LoginPage from "./pages/AuthPages/LoginPage";
 import RegisterPage from "./pages/AuthPages/RegisterPage";
+import ProtectedRoutes from "./features/Auth/ProtectedRoutes";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -16,6 +18,10 @@ function App() {
             <Route path={APP_ROUTE.ARTICLE_VIEWER} element={<ArticlePage />} />
             <Route path={APP_ROUTE.LOGIN} element={<LoginPage />} />
             <Route path={APP_ROUTE.REGISTER} element={<RegisterPage />} />
+
+            <Route element={<ProtectedRoutes />}>
+              <Route path={APP_ROUTE.PROFILE} element={<ProfilePage />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
