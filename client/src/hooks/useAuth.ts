@@ -15,16 +15,15 @@ function useAuth() {
 
   function setAuth(token: string) {
     type authToken = NonNullable<AuthProp["credentials"]>;
+    localStorage.setItem("token", token);
     const decode = jwtDecode<authToken>(token);
-
-    context?.setCredentials({ ...decode, access_token: token });
+    context?.setCredentials({ ...decode });
   }
 
   return {
     setAuth,
     logout,
     credential: context.credentials,
-    access_token: context.credentials?.access_token,
     isAuthenticated: !!context.credentials,
   };
 }

@@ -5,7 +5,6 @@ type data = {
   fullname: string;
   email: string;
   profile_picture: string;
-  access_token: string;
 };
 
 export type AuthProp = {

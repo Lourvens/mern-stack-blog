@@ -10,6 +10,7 @@ import {
 
 export const axiosInstance = axios.create({
   baseURL: "/api/",
+  withCredentials: true,
 });
 
 axiosInstance.interceptors.response.use(null, (err) => {
@@ -29,4 +30,13 @@ axiosInstance.interceptors.response.use(null, (err) => {
         throw new TOO_MANY_REQUESTS_ERR(err.message);
     }
   }
+});
+
+axiosInstance.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+
+  config.headers.Authorization = `Bearer ${token}`;
+  config.withCredentials = true;
+
+  return config;
 });
