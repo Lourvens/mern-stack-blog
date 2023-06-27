@@ -7,10 +7,11 @@ import {
   UNAUTHORIZED_ERR,
   TOO_MANY_REQUESTS_ERR,
 } from "@/utils/httpError";
-import authService from "@/features/Auth/auth.service";
+import { API_ROUTE } from "@/utils/constants";
 
+const baseURL = "/api/";
 export const axiosInstance = axios.create({
-  baseURL: "/api/",
+  baseURL,
   withCredentials: true,
 });
 
@@ -29,24 +30,20 @@ axiosInstance.interceptors.request.use((config) => {
 interface CustomAxiosRequestConfig extends AxiosRequestConfig {
   __isRetryReq: boolean;
 }
+
 /**
  * refresh the access token when request failed with 401 status code
  * and retry the request again
  */
 axiosInstance.interceptors.response.use(null, async (error) => {
   if (isAxiosError(error)) {
+    const REFRESH_TOKEN_URI = `${baseURL}/${API_ROUTE.REFRESH}`;
     const prevRequest = error.config as CustomAxiosRequestConfig;
-    const errorMessage = error.response?.data.error.message as string;
 
     if (error.response?.status === 401 && !prevRequest?.__isRetryReq) {
-      console.log(errorMessage);
-      const isInvalidRefreshToken = /token/.test(errorMessage);
-      if (isInvalidRefreshToken) return Promise.reject(error);
-
-      prevRequest.__isRetryReq = true;
-      const { data } = await authService.refreshToken();
+      const { data } = await axios(REFRESH_TOKEN_URI, { method: "post" });
       localStorage.setItem("token", data.access_token);
-
+      prevRequest.__isRetryReq = true;
       return axiosInstance(prevRequest);
     }
     return Promise.reject(error);
