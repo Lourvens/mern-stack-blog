@@ -21,9 +21,10 @@ function refreshToken() {
 }
 
 async function uploadUserProfile(imageFile: File) {
+  type resp = { profile_picture: string };
   const formData = new FormData();
   formData.append("image", imageFile);
-  return await axiosInstance.post<null>("/users/avatar", formData);
+  return await axiosInstance.post<resp>("/users/avatar", formData);
 }
 
 export default {
