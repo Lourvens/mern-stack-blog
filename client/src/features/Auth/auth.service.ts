@@ -20,9 +20,16 @@ function refreshToken() {
   return axiosInstance.post<token>(API_ROUTE.REFRESH);
 }
 
+async function uploadUserProfile(imageFile: File) {
+  const formData = new FormData();
+  formData.append("image", imageFile);
+  return await axiosInstance.post<null>("/users/avatar", formData);
+}
+
 export default {
   login,
   signup,
   logout,
   refreshToken,
+  uploadUserProfile,
 };
