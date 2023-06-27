@@ -4,15 +4,15 @@ import asyncHandler from "express-async-handler";
 import createHttpError from "http-errors";
 import { BAD_REQUEST, NOT_FOUND } from "http-status";
 
-type searchParams = { category: string; page: string };
+type searchParams = { category: string; page: number; author: string };
 const getArticles: RequestHandler<
   unknown,
   unknown,
   unknown,
   searchParams
 > = async (req, res) => {
-  const { category, page } = req.query;
-  const filter = { category, page: parseInt(page) };
+  const { category, page, author } = req.query;
+  const filter = { category, author, page };
   const data = await ArticleService.getArticles(filter);
   res.json(data);
 };
