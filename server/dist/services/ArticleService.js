@@ -15,8 +15,11 @@ async function getArticles(params) {
     let query = {};
     if (params?.category)
         query = { category: params.category };
+    if (params?.author)
+        query = { ...query, author: params.author };
+    const skipPage = (parseInt(params?.page) - 1 || 0) * 10;
     const articles = await filter(Article_1.default.find(query))
-        .skip(params?.page || 0)
+        .skip(skipPage)
         .select("-comments")
         .limit(10)
         .sort("-1")

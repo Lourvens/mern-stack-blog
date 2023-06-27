@@ -9,8 +9,8 @@ const express_async_handler_1 = __importDefault(require("express-async-handler")
 const http_errors_1 = __importDefault(require("http-errors"));
 const http_status_1 = require("http-status");
 const getArticles = async (req, res) => {
-    const { category, page } = req.query;
-    const filter = { category, page: parseInt(page) };
+    const { category, page, author } = req.query;
+    const filter = { category, author, page };
     const data = await ArticleService_1.default.getArticles(filter);
     res.json(data);
 };
