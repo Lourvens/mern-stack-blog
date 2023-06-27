@@ -51,67 +51,66 @@ const UserProfileCard = () => {
   };
 
   return (
-    <div>
-      <div className="flex items-center gap-8">
-        <div className="ring ring-primary rounded-full p-1 w-26 h-26 grid place-items-center">
-          <Avatar
-            fullname={credential?.fullname as string}
-            img_url={avatar_img_src}
-            large
-          />
+    <div className="flex flex-col items-center my-4 md:my-8">
+      <div>
+        <div className="flex items-center gap-8">
+          <div className="ring ring-primary rounded-full p-1 w-26 h-26 grid place-items-center">
+            <Avatar
+              fullname={credential?.fullname as string}
+              img_url={avatar_img_src}
+              large
+            />
+          </div>
+          <div>
+            <h1 className="text-3xl">{credential?.fullname}</h1>
+          </div>
         </div>
-        <div>
-          <h1 className="text-2xl">{credential?.fullname}</h1>
-          <h3 className="text-gray-400 dark:text-slate-600">
-            No article published
-          </h3>
-        </div>
-      </div>
-      <div className="mt-3">
-        <input
-          type="file"
-          className="hidden"
-          accept="image/*"
-          ref={fileInputRef}
-          onChange={onFileSelected}
-          onClick={(e) => {
-            // allow onChange trigered even if the same file was selected
-            e.currentTarget.value = "";
-          }}
-        />
-
-        {!imgFile ? (
-          <button
-            className="btn btn-success btn-sm no-underline gap-2 capitalize"
-            onClick={() => {
-              // open select file modal
-              fileInputRef.current?.click();
+        <div className="mt-3">
+          <input
+            type="file"
+            className="hidden"
+            accept="image/*"
+            ref={fileInputRef}
+            onChange={onFileSelected}
+            onClick={(e) => {
+              // allow onChange trigered even if the same file was selected
+              e.currentTarget.value = "";
             }}
-          >
-            <AiFillCamera /> upload
-          </button>
-        ) : (
-          <>
+          />
+
+          {!imgFile ? (
             <button
-              className="btn btn-circle btn-sm mr-2 text-error dark:text-white"
-              onClick={cancelUpload}
+              className="btn btn-success btn-sm no-underline gap-2 capitalize"
+              onClick={() => {
+                // open select file modal
+                fileInputRef.current?.click();
+              }}
             >
-              x
+              <AiFillCamera /> upload
             </button>
-            <button
-              className={clsx("mt-3 btn btn-success btn-sm rounded", {
-                loading: isLoading,
-              })}
-              disabled={isLoading}
-              onClick={() => imgFile && uploadFile(imgFile)}
-            >
-              save change
-            </button>
-          </>
-        )}
-        {hint && (
-          <span className="text-error block text-sm mt-1 ml-2">{hint}</span>
-        )}
+          ) : (
+            <>
+              <button
+                className="btn btn-circle btn-sm mr-2 text-error dark:text-white"
+                onClick={cancelUpload}
+              >
+                x
+              </button>
+              <button
+                className={clsx("mt-3 btn btn-success btn-sm rounded", {
+                  loading: isLoading,
+                })}
+                disabled={isLoading}
+                onClick={() => imgFile && uploadFile(imgFile)}
+              >
+                save change
+              </button>
+            </>
+          )}
+          {hint && (
+            <span className="text-error block text-sm mt-1 ml-2">{hint}</span>
+          )}
+        </div>
       </div>
     </div>
   );
