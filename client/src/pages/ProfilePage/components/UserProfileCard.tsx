@@ -1,13 +1,25 @@
 import Avatar from "@/components/Avatar";
+import authService from "@/features/Auth/auth.service";
 import useAuth from "@/hooks/useAuth";
+import clsx from "clsx";
 import { useRef, useState } from "react";
 import { AiFillCamera } from "react-icons/ai";
+import { useMutation } from "react-query";
 
 const UserProfileCard = () => {
-  const { credential } = useAuth();
+  const { credential, updateProfileImg } = useAuth();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [hint, setHint] = useState<string>();
   const [imgFile, setImgFile] = useState<File>();
+
+  const { isLoading, mutate: uploadFile } = useMutation({
+    mutationKey: ["users", credential?._id],
+    mutationFn: authService.uploadUserProfile,
+    onSuccess(resp) {
+      setImgFile(undefined);
+      updateProfileImg(resp.data.profile_picture);
+    },
+  });
 
   const onFileSelected = () => {
     if (fileInputRef.current?.files) {
@@ -33,8 +45,6 @@ const UserProfileCard = () => {
   const avatar_img_src = imgFile
     ? URL.createObjectURL(imgFile)
     : credential?.profile_picture;
-
-  // const uploadFile = () => {};
 
   const cancelUpload = () => {
     setImgFile(undefined);
@@ -89,8 +99,11 @@ const UserProfileCard = () => {
               x
             </button>
             <button
-              className="mt-3 btn btn-success btn-sm rounded"
-              // onClick={uploadFile}
+              className={clsx("mt-3 btn btn-success btn-sm rounded", {
+                loading: isLoading,
+              })}
+              disabled={isLoading}
+              onClick={() => imgFile && uploadFile(imgFile)}
             >
               save change
             </button>
