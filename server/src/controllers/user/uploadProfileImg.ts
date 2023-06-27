@@ -1,19 +1,20 @@
 import createHttpError from "http-errors";
 import { RequestHandler } from "express";
-import { CREATED, BAD_REQUEST } from "http-status";
+import { BAD_REQUEST, OK } from "http-status";
 import User from "../../services/UserService";
 import useCredentials from "../../hooks/useCredential";
+import asyncHandler from "express-async-handler";
 
-const uploadProfileImg: RequestHandler = (req, res) => {
+const uploadProfileImg: RequestHandler = async (req, res) => {
   let { id } = useCredentials(req);
 
   if (req.file?.filename) {
-    User.updateProfilePicture(id, req.file.filename);
-    return res.status(CREATED).end();
+    const profile_picture = req.file.filename;
+    await User.updateProfilePicture(id, profile_picture);
+    return res.status(OK).json({ profile_picture });
   }
 
   throw createHttpError(BAD_REQUEST, "image not found");
 };
 
-
-export default uploadProfileImg;
+export default asyncHandler(uploadProfileImg);
