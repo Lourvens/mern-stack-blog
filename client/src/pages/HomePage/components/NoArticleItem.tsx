@@ -1,4 +1,4 @@
-import { IMAGES } from "@/utils/constants";
+import { APP_ROUTE, IMAGES } from "@/utils/constants";
 import { Link } from "react-router-dom";
 
 type Prop = { category: string };
@@ -14,7 +14,7 @@ function NoArticleItem({ category }: Prop) {
         </h3>
       </div>
       <Link
-        to="/me/article/new"
+        to={APP_ROUTE.ARTICLE_EDIT}
         state={{ category }}
         className="capitalize btn gap-2 text-black dark:text-white"
       >
