@@ -1,54 +1,30 @@
 import Avatar from "@/components/Avatar";
 import authService from "@/features/Auth/auth.service";
 import useAuth from "@/hooks/useAuth";
+import useImageUploader from "@/hooks/useImageUploader";
 import clsx from "clsx";
-import { useRef, useState } from "react";
 import { AiFillCamera } from "react-icons/ai";
 import { useMutation } from "react-query";
 
 const UserProfileCard = () => {
   const { credential, updateProfileImg } = useAuth();
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [hint, setHint] = useState<string>();
-  const [imgFile, setImgFile] = useState<File>();
+  const { clearImgFile, imgFile, inputRef, onFileSelected, hint } =
+    useImageUploader();
 
   const { isLoading, mutate: uploadFile } = useMutation({
     mutationKey: ["users", credential?.id],
     mutationFn: authService.uploadUserProfile,
     onSuccess(resp) {
-      setImgFile(undefined);
+      clearImgFile();
       updateProfileImg(resp.data.profile_picture);
     },
   });
-
-  const onFileSelected = () => {
-    if (fileInputRef.current?.files) {
-      const imageFile = fileInputRef.current.files[0];
-      if (!imageFile) return;
-
-      if (!/^image\//.test(imageFile.type)) {
-        setHint("only image file is supported");
-        return;
-      }
-
-      const MAX_SIZE = 5 * 1024 * 1024; // 5 mb
-      if (Math.floor(imageFile.size) > MAX_SIZE) {
-        setHint("image is too large, only less than 5mb file is accepted");
-        return;
-      }
-
-      setHint(undefined);
-      setImgFile(imageFile);
-    }
-  };
 
   const avatar_img_src = imgFile
     ? URL.createObjectURL(imgFile)
     : credential?.profile_picture;
 
-  const cancelUpload = () => {
-    setImgFile(undefined);
-  };
+  const cancelUpload = clearImgFile;
 
   return (
     <div className="my-4 md:my-8">
@@ -69,7 +45,7 @@ const UserProfileCard = () => {
                 type="file"
                 className="hidden"
                 accept="image/*"
-                ref={fileInputRef}
+                ref={inputRef}
                 onChange={onFileSelected}
                 onClick={(e) => {
                   // allow onChange trigered even if the same file was selected
@@ -82,7 +58,7 @@ const UserProfileCard = () => {
                   className="btn btn-success btn-sm no-underline gap-2 capitalize"
                   onClick={() => {
                     // open select file modal
-                    fileInputRef.current?.click();
+                    inputRef.current?.click();
                   }}
                 >
                   <AiFillCamera /> upload a profile pic

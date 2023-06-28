@@ -1,6 +1,9 @@
+import useImageUploader from "@/hooks/useImageUploader";
 import { TbPhotoPlus } from "react-icons/tb";
 
 function ArticleEditor() {
+  const { inputRef } = useImageUploader();
+  
   return (
     <div className="my-8">
       <h1
@@ -8,7 +11,7 @@ function ArticleEditor() {
         data-placeholder="# type your title here..."
         contentEditable
       ></h1>
-      <input type="file" className="hidden" />
+      <input type="file" className="hidden" ref={inputRef} />
       <div className="w-full bg-gray-500 bg-opacity-20 h-64 rounded-lg my-10 flex justify-center items-center hover:bg-opacity-50">
         <button className="w-full h-full flex items-center justify-center flex-col">
           <TbPhotoPlus className="" size={70} />
