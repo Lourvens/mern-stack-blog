@@ -26,3 +26,7 @@ body {
 .text-subtitle {
   @apply text-gray-500 dark:text-slate-500
 }
+
+[data-placeholder]:empty:before {
+  content: attr(data-placeholder);
+}

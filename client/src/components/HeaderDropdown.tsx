@@ -62,7 +62,11 @@ const HeaderDropdown = ({ img_url, fullname }: Prop) => {
           to={APP_ROUTE.PROFILE}
           title="your profile"
         />
-        <LinkItem icon={<AiOutlineFileAdd />} to="" title="new article" />
+        <LinkItem
+          icon={<AiOutlineFileAdd />}
+          to={APP_ROUTE.ARTICLE_EDIT}
+          title="new article"
+        />
         <div className="divider m-0"></div>
         <Button icon={<AiOutlineLogout />} onClick={logout} title="logout" />
       </ul>

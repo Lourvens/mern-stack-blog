@@ -7,6 +7,7 @@ import LoginPage from "./pages/AuthPages/LoginPage";
 import RegisterPage from "./pages/AuthPages/RegisterPage";
 import ProtectedRoutes from "./features/Auth/ProtectedRoutes";
 import ProfilePage from "./pages/ProfilePage";
+import ArticleEditor from "./pages/ArticleEditor";
 
 function App() {
   return (
@@ -21,6 +22,10 @@ function App() {
 
             <Route element={<ProtectedRoutes />}>
               <Route path={APP_ROUTE.PROFILE} element={<ProfilePage />} />
+              <Route
+                path={APP_ROUTE.ARTICLE_EDIT}
+                element={<ArticleEditor />}
+              />
             </Route>
           </Route>
         </Routes>

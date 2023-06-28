@@ -6,7 +6,7 @@ const Avatar = ({ img_url, fullname, large }: prop) => {
     return (
       <div className="avatar">
         <div className={clsx("rounded-full", large ? "w-20" : "w-8")}>
-          <img src={img_url} alt="Tailwind-CSS-Avatar-component" />
+          <img src={img_url} />
         </div>
       </div>
     );

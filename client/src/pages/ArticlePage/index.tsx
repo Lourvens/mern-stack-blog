@@ -5,6 +5,7 @@ import { AiOutlineClockCircle, AiOutlineMessage } from "react-icons/ai";
 
 import moment from "moment";
 import abbreviateNumber from "@/utils/abbreviateNumber";
+import getAssetFileUrl from "@/utils/getAssetFileUrl";
 
 const ArticlePage = () => {
   const { id } = useParams();
@@ -16,6 +17,9 @@ const ArticlePage = () => {
     },
   });
 
+  const img_src =
+    data?.author.profile_picture &&
+    getAssetFileUrl("avatar", data?.author.profile_picture);
   return (
     <div>
       <div className=" max-w-6xl mx-auto">
@@ -47,7 +51,7 @@ const ArticlePage = () => {
           <div className="avatar placeholder">
             {data?.author.profile_picture ? (
               <div className="w-8 rounded-full bg-neutral-focus ring-1 ring-primary ring-offset-base-100 ring-offset-4">
-                <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <img src={img_src} />
               </div>
             ) : (
               <div className="bg-neutral-focus text-neutral-content rounded-full w-8">

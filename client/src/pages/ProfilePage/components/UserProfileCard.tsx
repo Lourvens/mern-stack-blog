@@ -13,7 +13,7 @@ const UserProfileCard = () => {
   const [imgFile, setImgFile] = useState<File>();
 
   const { isLoading, mutate: uploadFile } = useMutation({
-    mutationKey: ["users", credential?._id],
+    mutationKey: ["users", credential?.id],
     mutationFn: authService.uploadUserProfile,
     onSuccess(resp) {
       setImgFile(undefined);
@@ -51,7 +51,7 @@ const UserProfileCard = () => {
   };
 
   return (
-    <div className="flex flex-col items-center my-4 md:my-8">
+    <div className="my-4 md:my-8">
       <div>
         <div className="flex items-center gap-8">
           <div className="ring ring-primary rounded-full p-1 w-26 h-26 grid place-items-center">
@@ -63,54 +63,55 @@ const UserProfileCard = () => {
           </div>
           <div>
             <h1 className="text-3xl">{credential?.fullname}</h1>
+
+            <div className="mt-3">
+              <input
+                type="file"
+                className="hidden"
+                accept="image/*"
+                ref={fileInputRef}
+                onChange={onFileSelected}
+                onClick={(e) => {
+                  // allow onChange trigered even if the same file was selected
+                  e.currentTarget.value = "";
+                }}
+              />
+
+              {!imgFile ? (
+                <button
+                  className="btn btn-success btn-sm no-underline gap-2 capitalize"
+                  onClick={() => {
+                    // open select file modal
+                    fileInputRef.current?.click();
+                  }}
+                >
+                  <AiFillCamera /> upload a profile pic
+                </button>
+              ) : (
+                <>
+                  <button
+                    className="btn btn-circle btn-sm mr-2 text-error dark:text-white"
+                    onClick={cancelUpload}
+                  >
+                    x
+                  </button>
+                  <button
+                    className={clsx("mt-3 btn btn-success btn-sm rounded", {
+                      loading: isLoading,
+                    })}
+                    disabled={isLoading}
+                    onClick={() => imgFile && uploadFile(imgFile)}
+                  >
+                    save change
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         </div>
-        <div className="mt-3">
-          <input
-            type="file"
-            className="hidden"
-            accept="image/*"
-            ref={fileInputRef}
-            onChange={onFileSelected}
-            onClick={(e) => {
-              // allow onChange trigered even if the same file was selected
-              e.currentTarget.value = "";
-            }}
-          />
-
-          {!imgFile ? (
-            <button
-              className="btn btn-success btn-sm no-underline gap-2 capitalize"
-              onClick={() => {
-                // open select file modal
-                fileInputRef.current?.click();
-              }}
-            >
-              <AiFillCamera /> upload
-            </button>
-          ) : (
-            <>
-              <button
-                className="btn btn-circle btn-sm mr-2 text-error dark:text-white"
-                onClick={cancelUpload}
-              >
-                x
-              </button>
-              <button
-                className={clsx("mt-3 btn btn-success btn-sm rounded", {
-                  loading: isLoading,
-                })}
-                disabled={isLoading}
-                onClick={() => imgFile && uploadFile(imgFile)}
-              >
-                save change
-              </button>
-            </>
-          )}
-          {hint && (
-            <span className="text-error block text-sm mt-1 ml-2">{hint}</span>
-          )}
-        </div>
+        {hint && (
+          <span className="text-error block text-sm mt-2 ml-2">{hint}</span>
+        )}
       </div>
     </div>
   );

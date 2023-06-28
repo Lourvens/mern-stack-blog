@@ -8,6 +8,7 @@ export const APP_ROUTE = {
   REGISTER: "/auth/register",
   ARTICLE_VIEWER: "/articles/:id",
   PROFILE: "/me",
+  ARTICLE_EDIT: "/editor",
 };
 
 export const API_ROUTE = {

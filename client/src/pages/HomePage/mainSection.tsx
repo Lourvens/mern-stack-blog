@@ -2,9 +2,8 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import TabNavigation from "./components/TabNavigation";
 import ArticleService from "@/service/api/articleService";
-import Card from "./components/CardArticle";
 import NoArticleItem from "./components/NoArticleItem";
-import CardSkeleton from "./components/CardSkeleton";
+import ArticleList from "@/components/ArticleList";
 
 const MainSection = () => {
   const categories = [
@@ -38,11 +37,13 @@ const MainSection = () => {
         onChange={updateCategory}
       />
       {/* List Item */}
-      <div className="mt-6 px-3 grid gap-10 md:grid-cols-2 lg:gap-x-10 lg:px-16">
+      {/* <div className="mt-6 px-3 grid gap-10 md:grid-cols-2 lg:gap-x-10 lg:px-16">
         {isLoading && <CardSkeleton />}
         {isFetched &&
           data?.map((article) => <Card key={article._id} {...article} />)}
-      </div>
+      </div> */}
+
+      <ArticleList items={data} isLoading={isLoading} isFetched={isFetched} />
 
       {/* if data is empty  */}
       {!isLoading && isFetched && !data?.length && (

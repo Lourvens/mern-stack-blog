@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 type data = {
-  _id: string;
+  id: string;
   fullname: string;
   email: string;
   profile_picture: string;
