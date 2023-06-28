@@ -8,7 +8,7 @@ import { useMutation } from "react-query";
 
 const UserProfileCard = () => {
   const { credential, updateProfileImg } = useAuth();
-  const { clearImgFile, imgFile, inputRef, onFileSelected, hint } =
+  const { clearImgFile, imgFile, inputRef, hint, chooseFile, fileUrl } =
     useImageUploader();
 
   const { isLoading, mutate: uploadFile } = useMutation({
@@ -20,9 +20,7 @@ const UserProfileCard = () => {
     },
   });
 
-  const avatar_img_src = imgFile
-    ? URL.createObjectURL(imgFile)
-    : credential?.profile_picture;
+  const avatar_img_src = imgFile ? fileUrl : credential?.profile_picture;
 
   const cancelUpload = clearImgFile;
 
@@ -46,20 +44,12 @@ const UserProfileCard = () => {
                 className="hidden"
                 accept="image/*"
                 ref={inputRef}
-                onChange={onFileSelected}
-                onClick={(e) => {
-                  // allow onChange trigered even if the same file was selected
-                  e.currentTarget.value = "";
-                }}
               />
 
               {!imgFile ? (
                 <button
                   className="btn btn-success btn-sm no-underline gap-2 capitalize"
-                  onClick={() => {
-                    // open select file modal
-                    inputRef.current?.click();
-                  }}
+                  onClick={chooseFile}
                 >
                   <AiFillCamera /> upload a profile pic
                 </button>

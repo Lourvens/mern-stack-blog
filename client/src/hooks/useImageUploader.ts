@@ -1,11 +1,11 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function useImageUploader() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [hint, setHint] = useState<string>();
   const [imgFile, setImgFile] = useState<File>();
 
-  const onFileSelected = () => {
+  const updateImg = () => {
     if (inputRef.current?.files) {
       const imageFile = inputRef.current.files[0];
       if (!imageFile) return;
@@ -26,10 +26,38 @@ function useImageUploader() {
     }
   };
 
+  const chooseFile = () => {
+    inputRef.current?.click();
+  };
+
   const clearImgFile = () => {
     setImgFile(undefined);
   };
-  return { inputRef, onFileSelected, hint, imgFile, clearImgFile };
+
+  const removeInputValue = () => {
+    // allow onChange trigered even if the same file was selected
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
+  };
+
+  useEffect(() => {
+    const input = inputRef.current;
+    if (input) {
+      input.addEventListener("change", updateImg);
+      input.addEventListener("click", removeInputValue);
+    }
+    return () => {
+      if (input) {
+        input.removeEventListener("change", updateImg);
+        input.removeEventListener("click", removeInputValue);
+      }
+    };
+  }, []);
+
+  const fileUrl = imgFile && URL.createObjectURL(imgFile);
+
+  return { inputRef, hint, imgFile, clearImgFile, chooseFile, fileUrl };
 }
 
 export default useImageUploader;
