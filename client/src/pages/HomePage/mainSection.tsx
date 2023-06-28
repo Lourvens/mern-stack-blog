@@ -36,12 +36,6 @@ const MainSection = () => {
         selectedValue={selectedCategory}
         onChange={updateCategory}
       />
-      {/* List Item */}
-      {/* <div className="mt-6 px-3 grid gap-10 md:grid-cols-2 lg:gap-x-10 lg:px-16">
-        {isLoading && <CardSkeleton />}
-        {isFetched &&
-          data?.map((article) => <Card key={article._id} {...article} />)}
-      </div> */}
 
       <ArticleList items={data} isLoading={isLoading} isFetched={isFetched} />
 
