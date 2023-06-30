@@ -8,8 +8,25 @@ import RegisterPage from "./pages/AuthPages/RegisterPage";
 import ProtectedRoutes from "./features/Auth/ProtectedRoutes";
 import ProfilePage from "./pages/ProfilePage";
 import ArticleEditor from "./pages/ArticleEditor";
+import axios from "axios";
+import { useEffect } from "react";
+import useAuth from "./hooks/useAuth";
 
 function App() {
+  const { setAuth } = useAuth();
+
+  useEffect(() => {
+    async function autoLogin() {
+      const config = { method: "post", url: "/api/auth/refresh-token" };
+      const { data } = await axios(config);
+      setAuth(data.access_token);
+    }
+
+    autoLogin();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div>
       <BrowserRouter>
