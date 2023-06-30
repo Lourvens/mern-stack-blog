@@ -8,7 +8,7 @@ import RegisterPage from "./pages/AuthPages/RegisterPage";
 import ProtectedRoutes from "./features/Auth/ProtectedRoutes";
 import ProfilePage from "./pages/ProfilePage";
 import ArticleEditor from "./pages/ArticleEditor";
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import { useEffect } from "react";
 import useAuth from "./hooks/useAuth";
 
@@ -17,7 +17,11 @@ function App() {
 
   useEffect(() => {
     async function autoLogin() {
-      const config = { method: "post", url: "/api/auth/refresh-token" };
+      const config: AxiosRequestConfig = {
+        method: "post",
+        url: "/api/auth/refresh-token",
+        withCredentials: true,
+      };
       const { data } = await axios(config);
       setAuth(data.access_token);
     }
