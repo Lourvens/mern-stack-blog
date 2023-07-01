@@ -1,5 +1,8 @@
 import useImageUploader from "@/hooks/useImageUploader";
 import { TbPhotoPlus } from "react-icons/tb";
+import Editor from "./Editor";
+
+import "./editor.css";
 
 function ArticleEditor() {
   const { inputRef, chooseFile, fileUrl } = useImageUploader();
@@ -28,6 +31,9 @@ function ArticleEditor() {
           />
         )}
       </div>
+      <Editor />
+
+      <button className="btn btn-primary mt-8">publish</button>
     </div>
   );
 }

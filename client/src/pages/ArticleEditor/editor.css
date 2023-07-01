@@ -1,0 +1,15 @@
+.ql-container .ql-editor {
+  min-height: 400px;
+}
+
+.ql-container h1 {
+  font-size: 2rem;
+}
+
+.ql-container h2 {
+  font-size: 1.7rem;
+}
+
+.ql-container {
+  font-size: 18px;
+}
