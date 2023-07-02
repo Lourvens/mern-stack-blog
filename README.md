@@ -27,5 +27,5 @@ To get started with the MERN Stack Blog App, follow these steps:
 5. Access the application in your web browser at the provided URL.
 
 ## Visit the App
-To see the MERN Stack Blog App in action, visit the following link: [MERN Stack Blog App](https://bloglab-xi.vercel.app/)
+To see the MERN Stack Blog App in action, visit the following link: [https://bloglab-xi.vercel.app/](https://bloglab-xi.vercel.app/)
 
