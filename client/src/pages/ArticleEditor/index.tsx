@@ -1,39 +1,65 @@
-import useImageUploader from "@/hooks/useImageUploader";
-import { TbPhotoPlus } from "react-icons/tb";
-import Editor from "./Editor";
-
-import "./editor.css";
+import { useCallback, useState } from "react";
+import Editor from "./components/Editor";
+import FileInput from "./components/FileInput";
+import SelectInput from "./components/SelectInput";
+import usePublishArticle from "./usePublishArticle";
+import { z } from "zod";
+import clsx from "clsx";
 
 function ArticleEditor() {
-  const { inputRef, chooseFile, fileUrl } = useImageUploader();
+  const [category, setCategory] = useState<string>();
+  const [title, setTitle] = useState<string>();
+  const [fileInput, setFile] = useState<File>();
+  const [content, setContent] = useState<string>();
+
+  /* eslint-disable react-hooks/exhaustive-deps */
+  const updateCategory = useCallback(setCategory, []);
+  const updateFileInput = useCallback(setFile, []);
+  const updateContent = useCallback(setContent, []);
+
+  const { publish, isLoading, isSuccess } = usePublishArticle();
+
+  const schema = z
+    .object({
+      category: z.string().min(3).max(25),
+      title: z.string().min(3).max(255),
+      content: z.string().min(255).max(100_000),
+    })
+    .required();
+
+  const submit = () => {
+    try {
+      if (!fileInput) {
+        throw new Error("a cover image is required");
+      }
+      const result = schema.parse({ category, title, content });
+      publish({ ...result, cover: fileInput });
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <div className="my-8 lg:w-4/5 mx-auto">
+      <SelectInput onChange={updateCategory} />
       <h1
-        className="textarea textarea-bordered text-2xl md:text-4xl w-full min-h-6"
+        className="textarea text-2xl text-primary md:text-4xl w-full min-h-6"
         data-placeholder="# type your title here..."
         contentEditable
+        onKeyUp={(e) => {
+          setTitle(e.currentTarget.innerText);
+        }}
       ></h1>
-      <input type="file" className="hidden" ref={inputRef} />
-      <div className="relative w-full  h-64 rounded-lg my-10 flex justify-center items-center hover:bg-opacity-50 overflow-hidden">
-        <button
-          className="relative z-10 w-full h-full flex items-center justify-center flex-col bg-gray-500 bg-opacity-50 text-white"
-          onClick={chooseFile}
-        >
-          <TbPhotoPlus className="" size={70} />
-          Upload new cover image
-        </button>
-        {fileUrl && (
-          <img
-            src={fileUrl}
-            alt=""
-            className="absolute w-full h-full object-cover"
-          />
-        )}
-      </div>
-      <Editor />
+      <FileInput onChange={updateFileInput} />
+      <Editor onChange={updateContent} />
 
-      <button className="btn btn-primary mt-8">publish</button>
+      <button
+        className={clsx("btn btn-primary mt-8", { loading: isLoading })}
+        onClick={submit}
+        disabled={isLoading}
+      >
+        publish
+      </button>
     </div>
   );
 }

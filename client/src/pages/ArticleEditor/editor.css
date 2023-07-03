@@ -1,7 +1,13 @@
+.ql-snow.ql-toolbar button {
+  @apply dark:text-gray-200;
+}
 .ql-container .ql-editor {
   min-height: 400px;
+  @apply dark:text-gray-200;
 }
-
+.ql-container .ql-editor::before {
+  @apply dark:text-gray-400;
+}
 .ql-container h1 {
   font-size: 2rem;
 }
