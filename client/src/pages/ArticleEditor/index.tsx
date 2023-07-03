@@ -17,7 +17,7 @@ function ArticleEditor() {
   const updateFileInput = useCallback(setFile, []);
   const updateContent = useCallback(setContent, []);
 
-  const { publish, isLoading, isSuccess } = usePublishArticle();
+  const { publish, isLoading } = usePublishArticle();
 
   const schema = z
     .object({
