@@ -9,6 +9,7 @@ import { API_ROUTE } from "@/utils/constants";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import DeleteModal from "./DeleteModal";
 import { useState } from "react";
+import getAssetFileUrl from "@/utils/getAssetFileUrl";
 
 type props = article & { withBtnAction?: boolean };
 function Card({ withBtnAction, ...article }: props) {
@@ -40,7 +41,16 @@ function Card({ withBtnAction, ...article }: props) {
             </div>
           </div>
 
-          <div className="shrink-0 w-24 h-24 rounded-xl bg-slate-500"></div>
+          <div className="shrink-0 w-24 h-24 rounded-xl bg-slate-500 overflow-hidden">
+            {article && (
+              <img
+                src={getAssetFileUrl("blog", article?.img_path)}
+                alt=""
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            )}
+          </div>
         </div>
         {withBtnAction && (
           <div className="mt-4">

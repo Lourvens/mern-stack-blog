@@ -20,9 +20,10 @@ const ArticlePage = () => {
   const img_src =
     data?.author.profile_picture &&
     getAssetFileUrl("avatar", data?.author.profile_picture);
+
   return (
     <div>
-      <div className=" max-w-6xl mx-auto">
+      <div className=" max-w-4xl mx-auto">
         <div className="flex items-center justify-between">
           <div className="text-sm breadcrumbs overflow-hidden">
             <ul>
@@ -46,7 +47,17 @@ const ArticlePage = () => {
           </div>
         </div>
         <h1 className="text-title">{data?.title}</h1>
-        <div className="my-6 bg-gray-600 bg-opacity-30 h-48 rounded-xl"></div>
+
+        <div className="my-6 bg-opacity-30 h-48 lg:h-60 rounded-xl overflow-hidden">
+          {data && (
+            <img
+              src={getAssetFileUrl("blog", data?.img_path)}
+              alt=""
+              className="w-full h-full object-cover"
+            />
+          )}
+        </div>
+
         <div className="flex items-center gap-6">
           <div className="avatar placeholder">
             {data?.author.profile_picture ? (
