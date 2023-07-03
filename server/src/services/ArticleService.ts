@@ -28,7 +28,7 @@ async function getArticles(params?: params) {
     .skip(skipPage)
     .select("-comments")
     .limit(10)
-    .sort("-1")
+    .sort({ updatedAt: -1 })
     .exec();
 
   return articles;
