@@ -2,10 +2,13 @@ import ArticleService from "@/service/api/articleService";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { AiOutlineClockCircle, AiOutlineMessage } from "react-icons/ai";
-
 import moment from "moment";
+
 import abbreviateNumber from "@/utils/abbreviateNumber";
 import getAssetFileUrl from "@/utils/getAssetFileUrl";
+import DOMPurify from "isomorphic-dompurify";
+
+import "./article_content.css";
 
 const ArticlePage = () => {
   const { id } = useParams();
@@ -20,6 +23,8 @@ const ArticlePage = () => {
   const img_src =
     data?.author.profile_picture &&
     getAssetFileUrl("avatar", data?.author.profile_picture);
+
+  const sanitizedContent = data?.content && DOMPurify.sanitize(data.content);
 
   return (
     <div>
@@ -79,7 +84,10 @@ const ArticlePage = () => {
             <span>{moment(data?.createdAt).format("ll")}</span>
           </h1>
         </div>
-        <p className="mt-8">{data?.content}</p>
+        <p
+          className="mt-8 text-clip w-full overflow-hidden article-content"
+          dangerouslySetInnerHTML={{ __html: sanitizedContent || "" }}
+        ></p>
       </div>
     </div>
   );

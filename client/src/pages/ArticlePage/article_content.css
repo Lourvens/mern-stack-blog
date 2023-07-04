@@ -1,0 +1,29 @@
+.article-content {
+  @apply dark:text-gray-400;
+}
+
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content b,
+.article-content strong{
+  @apply dark:text-gray-200;
+}
+
+.article-content h1{
+  @apply text-2xl;
+
+}
+.article-content h2 {
+  @apply text-xl;
+}
+.article-content h3{
+  @apply text-lg;
+}
+.article-content blockquote{
+  @apply my-2 border-l-4 border-primary p-4 bg-slate-900 bg-opacity-10 dark:bg-slate-900;
+}
+
+.article-content a {
+  @apply text-primary border-b border-dotted border-b-primary;
+}
