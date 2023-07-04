@@ -26,4 +26,4 @@ export const IMAGES = {
   articleRead: articleReadingImg,
 };
 
-export const ASSETS_URL = import.meta.env.VITE_API_URL + "/assets";
+export const ASSETS_URL = "/api/assets";
