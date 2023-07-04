@@ -1,16 +1,22 @@
+import useAuth from "@/hooks/useAuth";
 import ArticleService from "@/service/api/articleService";
 import clsx from "clsx";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 
 type prop = { isOpen: boolean; close: () => void; article_id: string };
 
 const DeleteModal = ({ isOpen, close, article_id }: prop) => {
+  const queryClient = useQueryClient();
+  const { credential } = useAuth();
   const { isLoading, mutate } = useMutation({
     mutationKey: ["articles", article_id],
     mutationFn: async () => {
       await ArticleService.deleteOne(article_id);
     },
-    onSuccess: close,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["articles", { author: credential?.id }]);
+      close();
+    },
   });
 
   const closeModal = () => !isLoading && close();
