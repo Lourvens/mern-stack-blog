@@ -3,6 +3,7 @@
     {
       "source": "/api/(.*)",
       "destination": "https://lourvens-blog-api.onrender.com/$1"
-    }
+    },
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
