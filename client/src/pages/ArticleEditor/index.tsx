@@ -41,6 +41,9 @@ function ArticleEditor() {
 
   return (
     <div className="my-8 lg:w-4/5 mx-auto">
+      <span className="inline-block mb-3 text-warning">
+        * All field below are required
+      </span>
       <SelectInput onChange={updateCategory} />
       <h1
         className="textarea text-2xl text-primary md:text-4xl w-full min-h-6"

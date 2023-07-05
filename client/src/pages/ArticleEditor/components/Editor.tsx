@@ -45,7 +45,7 @@ const Editor = ({ onChange }: Prop) => {
       value={text}
       modules={modules}
       formats={formats}
-      placeholder="start writing your content here..."
+      placeholder="start writing your content here... at least 255 chars"
     />
   );
 };
