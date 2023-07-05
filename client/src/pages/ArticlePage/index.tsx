@@ -9,10 +9,13 @@ import getAssetFileUrl from "@/utils/getAssetFileUrl";
 import DOMPurify from "isomorphic-dompurify";
 
 import "./article_content.css";
+import { NOT_FOUND_ERR } from "@/utils/httpError";
+import NotFound from "./components/NotFound";
+import Skeleton from "./components/Skeleton";
 
 const ArticlePage = () => {
   const { id } = useParams();
-  const { data } = useQuery({
+  const { data, error, isLoading } = useQuery({
     queryKey: ["articles", id],
     queryFn: async () => {
       const { data } = await ArticleService.getById(id as string);
@@ -26,9 +29,17 @@ const ArticlePage = () => {
 
   const sanitizedContent = data?.content && DOMPurify.sanitize(data.content);
 
+  if (isLoading) {
+    return <Skeleton />;
+  }
+
+  if (error instanceof NOT_FOUND_ERR) {
+    return <NotFound />;
+  }
+
   return (
     <div>
-      <div className=" max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between">
           <div className="text-sm breadcrumbs overflow-hidden">
             <ul>
