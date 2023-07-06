@@ -32,7 +32,7 @@ const HeroSection = () => {
         <Header />
         <div className="mt-20 lg:mt-32 py-4 max-w-xl mx-auto">
           {isLoading && <CarouselSkeleton />}
-          {!isLoading && data && data.length && (
+          {!isLoading && data && data.length > 0 && (
             <Carousel
               items={data}
               selected={articleCategories.indexOf(selectedCategory)}
